@@ -1801,9 +1801,9 @@ internal class IntraPredictor
             arraycopy(ac, previousRowOffset, ac, rowOffset, chromaWidth)
         }
 
-        var sum = 1 shl (chromaWidth.countTrailingZeroBits() + Integer.numberOfTrailingZeros(
-            chromaHeight
-        ) - 1)
+        var sum = 1 shl (
+            chromaWidth.countTrailingZeroBits() + chromaHeight.countTrailingZeroBits() - 1
+        )
         for (value in ac) {
             sum += value
         }
