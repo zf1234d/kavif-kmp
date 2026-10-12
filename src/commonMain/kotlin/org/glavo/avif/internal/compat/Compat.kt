@@ -58,10 +58,6 @@ class ByteArrayOutput(capacity: Int = 32) {
     }
 }
 
-fun Throwable.addSuppressed(other: Throwable) {
-    // Kotlin/Native has no suppressed chain; JVM still records it via cause if unused.
-}
-
 @Suppress("NOTHING_TO_INLINE")
 inline fun toUnsignedInt(value: Byte): Int = value.toInt() and 0xFF
 
