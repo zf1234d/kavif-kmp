@@ -1,0 +1,67 @@
+# Normalize line endings: store LF in the repo, convert on checkout per platform.
+* text=auto eol=lf
+
+# Always LF (must not have CR; shell scripts break CI/Android if they do)
+*.sh        text eol=lf
+gradlew     text eol=lf
+*.properties text eol=lf
+
+# Windows scripts
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+
+# Kotlin / Java / build sources
+*.kt        text
+*.kts       text
+*.java      text
+*.gradle    text
+
+# Web / resources / config
+*.html      text
+*.htm       text
+*.css       text
+*.js        text
+*.json      text
+*.xml       text
+*.yml       text
+*.yaml      text
+*.md        text
+*.txt       text
+LICENSE     text
+*.svg       text
+
+# Git metadata
+.gitignore  text
+.gitattributes text
+
+# Binary — never do line-ending or diff conversion
+*.jar       binary
+*.aar       binary
+*.so        binary
+*.dll       binary
+*.dylib     binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.webp      binary
+*.ttf       binary
+*.otf       binary
+*.woff      binary
+*.woff2     binary
+*.zip       binary
+*.gz        binary
+*.bz2       binary
+*.xz        binary
+*.7z        binary
+*.class     binary
+*.dex       binary
+*.apk       binary
+*.aab       binary
+*.jks       binary
+*.keystore  binary
+
+# Diff tuning (optional, keeps large generated files out of blame)
+*.min.js    -diff
+*.min.css   -diff
