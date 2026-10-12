@@ -242,8 +242,6 @@ class BigInt(private val value: Long) {
     fun toInt(): Int = value.toInt()
 }
 
-fun bigInt(value: Long): BigInt = BigInt(value)
-
 @OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
 fun decodeBase64(src: String): ByteArray {
     val cleaned = src.filter { it != '\n' && it != '\r' && it != ' ' }

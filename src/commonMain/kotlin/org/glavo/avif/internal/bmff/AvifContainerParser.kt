@@ -3998,19 +3998,19 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             offsetNumerator: Int,
             offsetDenominator: Int
         ): Int {
-            val apertureDenominatorValue = bigInt(apertureDenominator.toLong())
-            val offsetDenominatorValue = bigInt(offsetDenominator.toLong())
+            val apertureDenominatorValue = BigInt(apertureDenominator.toLong())
+            val offsetDenominatorValue = BigInt(offsetDenominator.toLong())
             val commonDenominator = apertureDenominatorValue
                 .multiply(offsetDenominatorValue)
                 .shiftLeft(1)
-            val numerator = bigInt(imageDimension.toLong())
+            val numerator = BigInt(imageDimension.toLong())
                 .multiply(apertureDenominatorValue)
                 .multiply(offsetDenominatorValue)
                 .subtract(
-                    bigInt(apertureNumerator.toLong()).multiply(offsetDenominatorValue)
+                    BigInt(apertureNumerator.toLong()).multiply(offsetDenominatorValue)
                 )
                 .add(
-                    bigInt(offsetNumerator.toLong()).multiply(apertureDenominatorValue)
+                    BigInt(offsetNumerator.toLong()).multiply(apertureDenominatorValue)
                         .shiftLeft(1)
                 )
             if (numerator.signum() < 0) {
