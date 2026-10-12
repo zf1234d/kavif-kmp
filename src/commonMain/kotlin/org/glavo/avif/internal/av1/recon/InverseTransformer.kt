@@ -542,9 +542,9 @@ internal class InverseTransformer
 
         val rowClipRange = conformanceClipRange(rowClipRange(bitDepth), strictStdCompliance)
         val columnClipRange = conformanceClipRange(columnClipRange(bitDepth), strictStdCompliance)
-        withActiveClipRange(
-            rowClipRange,
-            Runnable { inverseDctDctAxis(transformSize, input, output, width) })
+        withActiveClipRange(rowClipRange) {
+            inverseDctDctAxis(transformSize, input, output, width)
+        }
         val columnInput = clipToRange(
             positiveRoundShift(
                 output[0].toLong(),
@@ -555,9 +555,9 @@ internal class InverseTransformer
 
         fillCompat(input, 0, height, 0)
         input[0] = columnInput
-        withActiveClipRange(
-            columnClipRange,
-            Runnable { inverseDctDctAxis(transformSize, input, output, height) })
+        withActiveClipRange(columnClipRange) {
+            inverseDctDctAxis(transformSize, input, output, height)
+        }
         return positiveRoundShift(output[0].toLong(), 4)
     }
 
@@ -610,7 +610,7 @@ internal class InverseTransformer
                 fillCompat(buffer, rowOffset, rowOffset + 4, 0)
                 continue
             }
-            withActiveClipRange(rowClipRange, Runnable { inverseDct4(scratchIn, scratchOut) })
+            withActiveClipRange(rowClipRange) { inverseDct4(scratchIn, scratchOut) }
             buffer[rowOffset] = clipToRange(scratchOut[0].toLong(), columnClipRange)
             buffer[rowOffset + 1] = clipToRange(scratchOut[1].toLong(), columnClipRange)
             buffer[rowOffset + 2] = clipToRange(scratchOut[2].toLong(), columnClipRange)
@@ -622,7 +622,7 @@ internal class InverseTransformer
             scratchIn[1] = buffer[4 + column]
             scratchIn[2] = buffer[8 + column]
             scratchIn[3] = buffer[12 + column]
-            withActiveClipRange(columnClipRange, Runnable { inverseDct4(scratchIn, scratchOut) })
+            withActiveClipRange(columnClipRange) { inverseDct4(scratchIn, scratchOut) }
             output[column] = positiveRoundShift(scratchOut[0].toLong(), 4)
             output[4 + column] = positiveRoundShift(scratchOut[1].toLong(), 4)
             output[8 + column] = positiveRoundShift(scratchOut[2].toLong(), 4)
@@ -661,7 +661,7 @@ internal class InverseTransformer
                 fillCompat(buffer, rowOffset, rowOffset + 8, 0)
                 continue
             }
-            withActiveClipRange(rowClipRange, Runnable { inverseDct8(scratchIn, scratchOut) })
+            withActiveClipRange(rowClipRange) { inverseDct8(scratchIn, scratchOut) }
             for (column in 0..7) {
                 buffer[rowOffset + column] = clipToRange(
                     positiveRoundShift(scratchOut[column].toLong(), 1).toLong(),
@@ -674,7 +674,7 @@ internal class InverseTransformer
             for (row in 0..7) {
                 scratchIn[row] = buffer[(row shl 3) + column]
             }
-            withActiveClipRange(columnClipRange, Runnable { inverseDct8(scratchIn, scratchOut) })
+            withActiveClipRange(columnClipRange) { inverseDct8(scratchIn, scratchOut) }
             for (row in 0..7) {
                 output[(row shl 3) + column] = positiveRoundShift(scratchOut[row].toLong(), 4)
             }
@@ -716,7 +716,7 @@ internal class InverseTransformer
                 fillCompat(buffer, rowOffset, rowOffset + 16, 0)
                 continue
             }
-            withActiveClipRange(rowClipRange, Runnable { inverseDct16(scratchIn, scratchOut) })
+            withActiveClipRange(rowClipRange) { inverseDct16(scratchIn, scratchOut) }
             for (column in 0..15) {
                 buffer[rowOffset + column] = clipToRange(
                     positiveRoundShift(scratchOut[column].toLong(), 2).toLong(),
@@ -729,7 +729,7 @@ internal class InverseTransformer
             for (row in 0..15) {
                 scratchIn[row] = buffer[(row shl 4) + column]
             }
-            withActiveClipRange(columnClipRange, Runnable { inverseDct16(scratchIn, scratchOut) })
+            withActiveClipRange(columnClipRange) { inverseDct16(scratchIn, scratchOut) }
             for (row in 0..15) {
                 output[(row shl 4) + column] = positiveRoundShift(scratchOut[row].toLong(), 4)
             }
@@ -787,9 +787,9 @@ internal class InverseTransformer
                 fillCompat(buffer, rowOffset, rowOffset + width, 0)
                 continue
             }
-            withActiveClipRange(
-                rowClipRange,
-                Runnable { inverseDct(rowScratchIn, rowScratchOut, width) })
+            withActiveClipRange(rowClipRange) {
+                inverseDct(rowScratchIn, rowScratchOut, width)
+            }
             for (column in 0..<width) {
                 buffer[rowOffset + column] = clipToRange(
                     positiveRoundShift(rowScratchOut[column].toLong(), intermediateShift).toLong(),
@@ -802,9 +802,9 @@ internal class InverseTransformer
             for (row in 0..<height) {
                 columnScratchIn[row] = buffer[row * width + column]
             }
-            withActiveClipRange(
-                columnClipRange,
-                Runnable { inverseDct(columnScratchIn, columnScratchOut, height) })
+            withActiveClipRange(columnClipRange) {
+                inverseDct(columnScratchIn, columnScratchOut, height)
+            }
             for (row in 0..<height) {
                 output[row * width + column] = positiveRoundShift(columnScratchOut[row].toLong(), 4)
             }
@@ -860,17 +860,14 @@ internal class InverseTransformer
                 fillCompat(buffer, rowOffset, rowOffset + width, 0)
                 continue
             }
-            withActiveClipRange(
-                rowClipRange,
-                Runnable {
-                    inverseKernel(
-                        transformType.horizontalKernel(),
-                        rowScratchIn,
-                        rowScratchOut,
-                        width
-                    )
-                }
-            )
+            withActiveClipRange(rowClipRange) {
+                inverseKernel(
+                    transformType.horizontalKernel(),
+                    rowScratchIn,
+                    rowScratchOut,
+                    width
+                )
+            }
             for (column in 0..<width) {
                 buffer[rowOffset + column] = clipToRange(
                     positiveRoundShift(rowScratchOut[column].toLong(), intermediateShift).toLong(),
@@ -883,17 +880,14 @@ internal class InverseTransformer
             for (row in 0..<height) {
                 columnScratchIn[row] = buffer[row * width + column]
             }
-            withActiveClipRange(
-                columnClipRange,
-                Runnable {
-                    inverseKernel(
-                        transformType.verticalKernel(),
-                        columnScratchIn,
-                        columnScratchOut,
-                        height
-                    )
-                }
-            )
+            withActiveClipRange(columnClipRange) {
+                inverseKernel(
+                    transformType.verticalKernel(),
+                    columnScratchIn,
+                    columnScratchOut,
+                    height
+                )
+            }
             for (row in 0..<height) {
                 output[row * width + column] = positiveRoundShift(columnScratchOut[row].toLong(), 4)
             }
@@ -2721,11 +2715,11 @@ internal class InverseTransformer
      * @param clipRange the temporary clip range
      * @param action the stage body to execute
      */
-    private fun withActiveClipRange(clipRange: ClipRange, action: Runnable) {
+    private fun withActiveClipRange(clipRange: ClipRange, action: () -> Unit) {
         val previous = activeClipRange
         activeClipRange = clipRange
         try {
-            action.run()
+            action()
         } finally {
             activeClipRange = previous
         }
