@@ -226,22 +226,6 @@ fun fillCompat(a: LongArray, fromIndex: Int, toIndex: Int, value: Long) { a.fill
 fun fillCompat(a: BooleanArray, fromIndex: Int, toIndex: Int, value: Boolean) { a.fill(value, fromIndex, toIndex) }
 fun <T> fillCompat(a: Array<T>, fromIndex: Int, toIndex: Int, value: T) { a.fill(value, fromIndex, toIndex) }
 
-class BigInt(private val value: Long) {
-    fun subtract(other: BigInt): BigInt = BigInt(value - other.value)
-    fun add(other: BigInt): BigInt = BigInt(value + other.value)
-    fun multiply(other: BigInt): BigInt = BigInt(value * other.value)
-    fun divide(other: BigInt): BigInt = BigInt(value / other.value)
-    fun shiftLeft(n: Int): BigInt = BigInt(value shl n)
-    fun shiftRight(n: Int): BigInt = BigInt(value shr n)
-    fun signum(): Int = when {
-        value < 0L -> -1
-        value > 0L -> 1
-        else -> 0
-    }
-    fun bitLength(): Int = if (value == 0L) 0 else 64 - value.countLeadingZeroBits()
-    fun toInt(): Int = value.toInt()
-}
-
 @OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
 fun decodeBase64(src: String): ByteArray {
     val cleaned = src.filter { it != '\n' && it != '\r' && it != ' ' }

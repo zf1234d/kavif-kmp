@@ -127,3 +127,5 @@ outdated or misleading information; read the code and verify its behavior yourse
 ## Acknowledgements
 
 [javif](https://github.com/Glavo/javif) by Glavo.
+
+Referenced the decoding behavior of [libavif](https://github.com/AOMediaCodec/libavif).

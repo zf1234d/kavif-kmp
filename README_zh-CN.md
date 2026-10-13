@@ -126,3 +126,5 @@ val frameBitmap: Bitmap = frame.toBitmap()            // 任意 AvifFrame 的 Bi
 ## 致谢
 
 Glavo 的 [javif](https://github.com/Glavo/javif)。
+
+参考 [libavif](https://github.com/AOMediaCodec/libavif) 的解码行为。

@@ -3902,29 +3902,23 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
 
             val clap: CleanAperture? = item.firstProperty<CleanAperture>(CleanAperture::class)
             if (clap != null) {
-                clapCropWidth =
-                    ((clap.cleanApertureWidthN.toLong() + clap.cleanApertureWidthD - 1L) / clap.cleanApertureWidthD).toInt()
-                clapCropHeight =
-                    ((clap.cleanApertureHeightN.toLong() + clap.cleanApertureHeightD - 1L) / clap.cleanApertureHeightD).toInt()
-                clapCropX = roundedCleanApertureOrigin(
-                    imageWidth,
-                    clap.cleanApertureWidthN, clap.cleanApertureWidthD,
-                    clap.horizOffN, clap.horizOffD
-                )
-                clapCropY = roundedCleanApertureOrigin(
-                    imageHeight,
-                    clap.cleanApertureHeightN, clap.cleanApertureHeightD,
-                    clap.vertOffN, clap.vertOffD
-                )
-                if (clapCropX >= 0 && clapCropY >= 0 && clapCropWidth > 0 && clapCropHeight > 0 && clapCropX < imageWidth && clapCropY < imageHeight) {
-                    clapCropWidth = min(clapCropWidth, imageWidth - clapCropX)
-                    clapCropHeight = min(clapCropHeight, imageHeight - clapCropY)
-                }
-                if (clapCropX < 0 || clapCropY < 0 || clapCropWidth <= 0 || clapCropHeight <= 0 || clapCropX >= imageWidth || clapCropY >= imageHeight) {
-                    clapCropX = -1
-                    clapCropY = -1
-                    clapCropWidth = -1
-                    clapCropHeight = -1
+                val clapWidth = integerCleanApertureSize(clap.cleanApertureWidthN, clap.cleanApertureWidthD)
+                val clapHeight = integerCleanApertureSize(clap.cleanApertureHeightN, clap.cleanApertureHeightD)
+                if (clapWidth != null && clapHeight != null) {
+                    clapCropWidth = clapWidth
+                    clapCropHeight = clapHeight
+                    clapCropX = exactCleanApertureOrigin(imageWidth, clapWidth, clap.horizOffN, clap.horizOffD)
+                    clapCropY = exactCleanApertureOrigin(imageHeight, clapHeight, clap.vertOffN, clap.vertOffD)
+                    if (clapCropX >= 0 && clapCropY >= 0 && clapCropWidth > 0 && clapCropHeight > 0 && clapCropX < imageWidth && clapCropY < imageHeight) {
+                        clapCropWidth = min(clapCropWidth, imageWidth - clapCropX)
+                        clapCropHeight = min(clapCropHeight, imageHeight - clapCropY)
+                    }
+                    if (clapCropX < 0 || clapCropY < 0 || clapCropWidth <= 0 || clapCropHeight <= 0 || clapCropX >= imageWidth || clapCropY >= imageHeight) {
+                        clapCropX = -1
+                        clapCropY = -1
+                        clapCropWidth = -1
+                        clapCropHeight = -1
+                    }
                 }
             }
 
@@ -3978,47 +3972,61 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 DisplaySize(width, height)
         }
 
-        /** Converts one clean-aperture center offset to an integer crop origin.
-         * 
-         * The `clap` offset locates the clean-aperture center relative to the uncropped image center;
-         * it is not the top-left crop coordinate. Non-integral coordinates are rounded to the nearest
-         * pixel, with half-pixel ties rounded toward the positive direction.
-         * 
-         * @param imageDimension the uncropped image dimension
-         * @param apertureNumerator the clean-aperture dimension numerator
-         * @param apertureDenominator the clean-aperture dimension denominator
-         * @param offsetNumerator the signed center-offset numerator
-         * @param offsetDenominator the center-offset denominator
-         * @return the normalized crop origin, or -1 if it is negative or exceeds the integer range
+        /** Returns one clean-aperture dimension when its rational value is an exact integer.
+         *
+         * The `clap` width and height are rational values. MIAF (ISO/IEC 23000-22:2019/Amd.2
+         * section 7.3.6.7) requires them to be integers, so a non-integral value is rejected
+         * instead of rounded.
+         *
+         * @param numerator the dimension numerator
+         * @param denominator the dimension denominator, required to be strictly positive
+         * @return the integer dimension, or `null` when the value is negative or not an integer
          */
-        fun roundedCleanApertureOrigin(
+        fun integerCleanApertureSize(numerator: Int, denominator: Int): Int? {
+            if (denominator <= 0 || numerator < 0 || numerator % denominator != 0) {
+                return null
+            }
+            return numerator / denominator
+        }
+
+        /** Converts one clean-aperture center offset to an exact integer crop origin.
+         *
+         * The `clap` offset locates the clean aperture center relative to the uncropped image
+         * center; it is not the top-left crop coordinate. The origin is
+         * `imageDimension / 2 + offsetNumerator / offsetDenominator - apertureSize / 2`.
+         * Evaluating it as `(imageDimension - apertureSize) * offsetDenominator + 2 * offsetNumerator`
+         * over `2 * offsetDenominator` stays inside the signed 64-bit range for every supported
+         * input, because each factor is at most `Int.MAX_VALUE`. A non-integral result is
+         * rejected rather than rounded, matching the MIAF requirement.
+         *
+         * @param imageDimension the uncropped image dimension
+         * @param apertureSize the integer clean aperture dimension
+         * @param offsetNumerator the signed center-offset numerator
+         * @param offsetDenominator the strictly positive center-offset denominator
+         * @return the exact crop origin, or -1 if it is not an integer, negative, or out of range
+         */
+        fun exactCleanApertureOrigin(
             imageDimension: Int,
-            apertureNumerator: Int,
-            apertureDenominator: Int,
+            apertureSize: Int,
             offsetNumerator: Int,
             offsetDenominator: Int
         ): Int {
-            val apertureDenominatorValue = BigInt(apertureDenominator.toLong())
-            val offsetDenominatorValue = BigInt(offsetDenominator.toLong())
-            val commonDenominator = apertureDenominatorValue
-                .multiply(offsetDenominatorValue)
-                .shiftLeft(1)
-            val numerator = BigInt(imageDimension.toLong())
-                .multiply(apertureDenominatorValue)
-                .multiply(offsetDenominatorValue)
-                .subtract(
-                    BigInt(apertureNumerator.toLong()).multiply(offsetDenominatorValue)
-                )
-                .add(
-                    BigInt(offsetNumerator.toLong()).multiply(apertureDenominatorValue)
-                        .shiftLeft(1)
-                )
-            if (numerator.signum() < 0) {
+            if (offsetDenominator <= 0) {
                 return -1
             }
-
-            val rounded = numerator.add(commonDenominator.shiftRight(1)).divide(commonDenominator)
-            return if (rounded.bitLength() <= 31) rounded.toInt() else -1
+            val denominator = 2L * offsetDenominator
+            val numerator = addExact(
+                subtractExact(
+                    imageDimension.toLong() * offsetDenominator,
+                    apertureSize.toLong() * offsetDenominator
+                ),
+                2L * offsetNumerator
+            )
+            if (numerator % denominator != 0L) {
+                return -1
+            }
+            val origin = numerator / denominator
+            return if (origin < 0L || origin > Int.MAX_VALUE) -1 else origin.toInt()
         }
 
         /** Returns the AV1 operating point selected for one image item.
