@@ -6,7 +6,6 @@ package org.glavo.avif.internal.io
 import org.glavo.avif.internal.compat.AutoAvifCloseable
 import org.glavo.avif.internal.compat.AvifIoException
 import org.glavo.avif.internal.compat.ByteBuf
-import org.glavo.avif.internal.compat.ByteOrder
 import org.glavo.avif.internal.compat.EOFException
 import org.glavo.avif.internal.compat.toUnsignedInt
 import org.glavo.avif.internal.compat.toUnsignedLong
@@ -20,12 +19,12 @@ abstract class BufferedInput : AutoAvifCloseable {
 
     protected constructor(bufferSize: Int = DEFAULT_BUFFER_SIZE, direct: Boolean = false) {
         require(bufferSize > 0) { "bufferSize <= 0: $bufferSize" }
-        this.buffer = ByteBuf.allocate(bufferSize).order(ByteOrder.LITTLE_ENDIAN)
+        this.buffer = ByteBuf.allocate(bufferSize)
         this.buffer.limit(0)
     }
 
     protected constructor(buffer: ByteBuf) {
-        this.buffer = buffer.order(ByteOrder.LITTLE_ENDIAN)
+        this.buffer = buffer
     }
 
     protected fun ensureOpen() {
@@ -161,7 +160,7 @@ abstract class BufferedInput : AutoAvifCloseable {
 
     fun isOpen(): Boolean = !closed
 
-    class OfByteBuf(source: ByteBuf) : BufferedInput(source.slice().order(ByteOrder.LITTLE_ENDIAN)) {
+    class OfByteBuf(source: ByteBuf) : BufferedInput(source.slice()) {
         override fun fillBuffer(required: Int) {
             throw unexpectedEndOfInput()
         }

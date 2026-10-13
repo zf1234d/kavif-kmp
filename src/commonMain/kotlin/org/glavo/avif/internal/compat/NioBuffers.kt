@@ -2,11 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.glavo.avif.internal.compat
 
-object ByteOrder {
-    const val LITTLE_ENDIAN: Int = 0
-    const val BIG_ENDIAN: Int = 1
-}
-
 class ByteBuf private constructor(
     private val data: ByteArray,
     private val arrayOffsetValue: Int,
@@ -37,8 +32,6 @@ class ByteBuf private constructor(
     fun hasArray(): Boolean = true
     fun array(): ByteArray = data
     fun arrayOffset(): Int = arrayOffsetValue
-    fun order(ignored: Int): ByteBuf = this
-
     fun slice(): ByteBuf = ByteBuf(data, arrayOffsetValue + pos, 0, remaining(), remaining(), readOnly)
     fun slice(index: Int, length: Int): ByteBuf {
         require(index >= 0 && length >= 0 && index + length <= cap) { "slice out of range" }
