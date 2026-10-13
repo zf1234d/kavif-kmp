@@ -13,8 +13,6 @@ open class AvifIoException : Exception {
     constructor(cause: Throwable) : super(cause)
 }
 
-class ExceptionInInitializerError(cause: Throwable) : Error(cause)
-
 class EOFException(message: String = "Unexpected end of input") : AvifIoException(message)
 
 object Charsets {

@@ -177,7 +177,7 @@ internal object QuantizationMatrixTables {
             }
             return baseTables
         } catch (e: AvifIoException) {
-            throw ExceptionInInitializerError(e)
+            throw IllegalStateException("Failed to decode quantization matrix base tables", e)
         }
     }
 

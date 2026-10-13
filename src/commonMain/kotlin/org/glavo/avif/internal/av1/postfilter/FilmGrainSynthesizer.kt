@@ -1126,7 +1126,7 @@ object FilmGrainSynthesizer {
             }
             return sequence
         } catch (e: AvifIoException) {
-            throw ExceptionInInitializerError(e)
+            throw IllegalStateException("Failed to decode film grain Gaussian sequence", e)
         }
     }
 }
