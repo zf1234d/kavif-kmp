@@ -178,18 +178,6 @@ class FrameReconstructor
      * @return one decoded-plane snapshot
      * @throws InvalidFrameReconstructionException if strict reconstruction detects a nonconformant value
      */
-    /** Reconstructs one supported structural frame result into decoded planes using the supplied
-     * stored reference surfaces for inter prediction.
-     * 
-     * @param syntaxDecodeResult the structural frame result to reconstruct
-     * @param referenceSurfaceSnapshots the stored reference surfaces addressable by AV1 slot index
-     * @return one decoded-plane snapshot
-     */
-    /** Reconstructs one supported structural frame result into decoded planes.
-     * 
-     * @param syntaxDecodeResult the structural frame result to reconstruct
-     * @return one decoded-plane snapshot
-     */
     fun reconstruct(
         syntaxDecodeResult: FrameSyntaxDecodeResult,
         referenceSurfaceSnapshots: Array<ReferenceSurfaceSnapshot?>? = arrayOfNullsCompat<ReferenceSurfaceSnapshot?>(
@@ -4492,9 +4480,7 @@ class FrameReconstructor
 
     /** Returns one compound inter predictor while retaining the AV1 post-filter fractional bits.
      * 
-     * Unlike [#sampleInterPlaneValue(PaddedPlane , int, int, int, int, int, int, int, int,
-     * /// ReferenceScale, int, int, FrameHeader.InterpolationFilter,
-     * /// FrameHeader.InterpolationFilter, int)], this method neither rounds to sample precision nor
+     * Unlike [sampleInterPlaneValue], this method neither rounds to sample precision nor
      * clips the predictor. Compound blending performs both operations after combining the two
      * predictors.
      * 

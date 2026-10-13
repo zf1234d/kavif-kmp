@@ -395,7 +395,7 @@ class TransformResidualUnit {
 
         /** Creates one DC-only residual unit without allocating a full coefficient block.
          * 
-         * [#coefficient(int)] and [#coefficients()] continue to expose the complete natural-order
+         * [coefficient] and [coefficients()] continue to expose the complete natural-order
          * coefficient block, with every AC coefficient equal to zero.
          * 
          * @param position the residual-unit origin in luma 4x4 units

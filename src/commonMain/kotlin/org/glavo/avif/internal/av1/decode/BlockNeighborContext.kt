@@ -3190,7 +3190,7 @@ class BlockNeighborContext private constructor(
         /** Returns the number of candidates visible to dynamic-reference-list syntax.
          * 
          * Single-reference global-motion fallback slots remain addressable through
-         * [#motionVectorCandidate(int)] but are not included in this count.
+         * [motionVectorCandidate] but are not included in this count.
          * 
          * @return the number of candidates visible to dynamic-reference-list syntax
          */

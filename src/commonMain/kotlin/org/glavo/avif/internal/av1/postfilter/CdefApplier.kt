@@ -74,7 +74,7 @@ object CdefApplier {
     /** Extracts the compact frame state required while applying CDEF.
      * 
      * The returned state does not retain `syntaxDecodeResult`. Callers may therefore release the
-     * complete frame syntax tree before [#applyPrepared(DecodedSurface, PreparedApplication)]
+     * complete frame syntax tree before [applyPrepared]
      * allocates destination planes.
      * 
      * @param decodedPlanes the decoded planes after loop filtering

@@ -15,8 +15,7 @@ import org.glavo.avif.internal.av1.output.YuvToRgbTransform
  * 
  * This implementation follows the ISO gain-map equation over normalized RGB samples, uses CICP
  * transfer functions where available, converts between supported RGB primary sets in linear
- * light, and leaves ICC transforms metadata-only under the repository's `java.base` runtime
- * boundary. */
+ * light, and leaves ICC transforms metadata-only. */
 internal object AvifGainMapToneMapper {
     /** Applies one gain map to a decoded base frame.
      * 

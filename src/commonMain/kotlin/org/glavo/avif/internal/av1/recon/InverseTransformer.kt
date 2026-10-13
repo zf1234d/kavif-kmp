@@ -46,25 +46,6 @@ internal class InverseTransformer
      * @param bitDepth the decoded sample bit depth
      * @return one signed residual sample block in natural raster order
      */
-    /** Reconstructs one residual sample block from dequantized `DCT_DCT` coefficients.
-     * 
-     * Input and output both use natural raster order. The returned samples are signed residuals
-     * that are ready to add to a predictor plane of the same dimensions.
-     * 
-     * @param dequantizedCoefficients the dequantized `DCT_DCT` coefficients in natural raster order
-     * @param transformSize the transform size to reconstruct
-     * @return one signed residual sample block in natural raster order
-     */
-    /** Reconstructs one residual sample block from dequantized transform coefficients.
-     * 
-     * Input and output both use natural raster order. The returned samples are signed residuals
-     * that are ready to add to a predictor plane of the same dimensions.
-     * 
-     * @param dequantizedCoefficients the dequantized transform coefficients in natural raster order
-     * @param transformSize the transform size to reconstruct
-     * @param transformType the transform type to reconstruct
-     * @return one signed residual sample block in natural raster order
-     */
     fun reconstructResidualBlock(
         dequantizedCoefficients: IntArray,
         transformSize: TransformSize,
@@ -429,7 +410,7 @@ internal class InverseTransformer
 
     /** Reconstructs and immediately applies one residual block using reusable instance storage.
      * 
-     * The coefficient array must be the buffer returned by [Workspace#coefficientBuffer(TransformSize)]
+     * The coefficient array must be the buffer returned by [Workspace.coefficientBuffer]
      * or another exact-length array that is not modified until this method returns.
      * 
      * @param plane the destination predictor plane

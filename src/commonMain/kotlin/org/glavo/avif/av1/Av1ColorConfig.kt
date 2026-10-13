@@ -12,7 +12,7 @@ import org.glavo.avif.AvifBitDepth
 /** Describes the color and chroma configuration declared by an AV1 sequence header.
  * 
  * Integer color-description values use the code points defined by the AV1 bitstream
- * specification. When [#colorDescriptionPresent()] is `false`, those values contain the AV1
+ * specification. When [colorDescriptionPresent()] is `false`, those values contain the AV1
  * defaults parsed for the sequence rather than externally supplied metadata.
  * 
  * @param bitDepth the decoded AV1 bit depth

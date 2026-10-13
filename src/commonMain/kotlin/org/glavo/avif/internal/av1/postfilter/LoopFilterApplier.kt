@@ -100,7 +100,7 @@ object LoopFilterApplier {
     /** Extracts the compact frame state required while applying loop filtering.
      * 
      * The returned state does not retain `syntaxDecodeResult`. Callers may therefore release the
-     * complete frame syntax tree before [#applyPrepared(DecodedSurface, PreparedApplication)]
+     * complete frame syntax tree before [applyPrepared]
      * allocates destination planes.
      * 
      * @param decodedPlanes the reconstructed planes to post-process

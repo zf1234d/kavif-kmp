@@ -41,7 +41,7 @@ object FramePostprocessor {
      * 
      * The returned object retains only compact loop-filter, CDEF, and restoration state. It does
      * not retain `syntaxDecodeResult`, so callers may release a large frame syntax tree before
-     * [#finish(PreparedFrame)] allocates any destination planes.
+     * [finish] allocates any destination planes.
      * 
      * @param decodedPlanes the reconstructed planes to post-process
      * @param frameHeader the normalized frame header that owns the planes
@@ -116,7 +116,7 @@ object FramePostprocessor {
 
     /** Syntax-independent state needed to finish postfiltering one decoded frame.
      * 
-     * Instances are created by [#prepare(DecodedSurface, FrameHeader, FrameSyntaxDecodeResult)] and
+     * Instances are created by [prepare] and
      * deliberately do not retain the complete block syntax tree. */
     class PreparedFrame(
         reconstructedPlanes: DecodedSurface,

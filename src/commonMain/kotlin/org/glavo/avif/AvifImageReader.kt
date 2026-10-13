@@ -25,9 +25,9 @@ import org.glavo.avif.internal.io.AvifDataSource
 
 /** High-level reader for AVIF images.
  * 
- * Readers opened from an input stream or readable channel support sequential [#readFrame()] and
- * [#readAllFrames()] access. Their indexed, raw-plane, and tone-mapping operations fail with
- * [AvifErrorCode#SEEKABLE_SOURCE_REQUIRED]. Sequential decoding also reports that code when the
+ * Readers opened from an input stream or readable channel support sequential [readFrame()] and
+ * [readAllFrames()] access. Their indexed, raw-plane, and tone-mapping operations fail with
+ * [AvifErrorCode.SEEKABLE_SOURCE_REQUIRED]. Sequential decoding also reports that code when the
  * container layout requires revisiting data outside the bounded progressive read window.
  * After a sequence frame fails, indexed operations remain available for seekable sources, but
  * sequential reading cannot resume because its persistent AV1 decoder may have consumed input. */
@@ -172,7 +172,7 @@ class AvifImageReader internal constructor(
      * 
      * For image sequences, forward indexed reads reuse decoder state. Reading an index lower than
      * the most recently decoded indexed frame restarts the indexed decoder from the beginning and
-     * does not affect sequential [#readFrame()] state.
+     * does not affect sequential [readFrame()] state.
      * 
      * @param frameIndex the zero-based frame index
      * @return the decoded frame
@@ -627,7 +627,7 @@ class AvifImageReader internal constructor(
      * @param label the diagnostic label for failures
      * @param operatingPoint the selected AV1 operating-point index
      * @param selectedSpatialLayer the selected spatial-layer identifier, or
-     * [AvifImageSource#HIGHEST_SPATIAL_LAYER]
+     * [AvifImageSource.HIGHEST_SPATIAL_LAYER]
      * @return decoded raw planes and their AV1 color configuration
      * @throws AvifIoException if decoding fails
      */
@@ -769,13 +769,6 @@ class AvifImageReader internal constructor(
      * @param source the image source
      * @param label the diagnostic label for failures
      * @param expectedAlphaBitDepth the required alpha bit depth, or `null` for a color image
-     * @return decoded raw planes and their AV1 color configuration
-     * @throws AvifIoException if the image source cannot be decoded
-     */
-    /** Decodes one standalone or grid-derived AV1 image source.
-     * 
-     * @param source the image source
-     * @param label the diagnostic label for failures
      * @return decoded raw planes and their AV1 color configuration
      * @throws AvifIoException if the image source cannot be decoded
      */
@@ -2173,14 +2166,6 @@ class AvifImageReader internal constructor(
          * @return the combined AVIF frame
          * @throws AvifDecodeException if the alpha dimensions differ
          */
-        /** Combines decoded alpha planes with a color frame.
-         * 
-         * @param colorFrame the decoded color frame
-         * @param alphaPlanes the decoded alpha planes
-         * @param frameIndex the zero-based AVIF frame index
-         * @return the combined AVIF frame
-         * @throws AvifDecodeException if the alpha dimensions differ
-         */
         fun combineFrameWithDecodedAlpha(
             colorFrame: AvifFrame,
             alphaPlanes: Av1DecodedPlanes,
@@ -2505,11 +2490,5 @@ class AvifImageReader internal constructor(
                 exception
             )
         }
-
-        /** Copies remaining integers from a buffer into an array.
-         * 
-         * @param buffer the source buffer
-         * @return an array containing the buffer's remaining integers
-         */
 }
 }

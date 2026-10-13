@@ -80,7 +80,7 @@ class ObuStreamReader private constructor(
     /** Returns whether the reader is positioned between two Annex B temporal units.
      * 
      * The result becomes `true` after the final OBU of a temporal unit is returned and remains
-     * true until the next call to [#readObu()] starts another temporal unit. Low-overhead readers
+     * true until the next call to [readObu()] starts another temporal unit. Low-overhead readers
      * always return `false` because that framing has no external temporal-unit boundary.
      * 
      * @return whether an Annex B temporal unit has just been completed

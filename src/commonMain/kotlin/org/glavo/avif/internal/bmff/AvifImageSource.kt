@@ -125,7 +125,7 @@ class AvifImageSource private constructor(
     /** Returns the selected spatial layer for one payload.
      * 
      * @param index the zero-based payload or cell index
-     * @return the spatial-layer identifier, or [#HIGHEST_SPATIAL_LAYER]
+     * @return the spatial-layer identifier, or [HIGHEST_SPATIAL_LAYER]
      */
     fun selectedSpatialLayer(index: Int): Int {
         return selectedSpatialLayers[index]
@@ -189,7 +189,7 @@ class AvifImageSource private constructor(
          * 
          * @param payload the AV1 item payload descriptor
          * @param operatingPoint the selected AV1 operating-point index
-         * @param selectedSpatialLayer the selected spatial-layer identifier, or [#HIGHEST_SPATIAL_LAYER]
+         * @param selectedSpatialLayer the selected spatial-layer identifier, or [HIGHEST_SPATIAL_LAYER]
          * @param outputWidth the reconstructed output width
          * @param outputHeight the reconstructed output height
          * @return the immutable standalone source
@@ -220,7 +220,7 @@ class AvifImageSource private constructor(
          * @param cellPayloads the cell AV1 payload descriptors in row-major order
          * @param operatingPoints the selected operating point for each cell
          * @param selectedSpatialLayers the selected spatial layer for each cell, using
-         * [#HIGHEST_SPATIAL_LAYER] where the highest output layer should be used
+         * [HIGHEST_SPATIAL_LAYER] where the highest output layer should be used
          * @param cellWidths the `ispe` width for each cell
          * @param cellHeights the `ispe` height for each cell
          * @param rows the grid row count

@@ -81,11 +81,11 @@ class AvifSequenceInfo(
     /** Returns the animated-sequence repetition count.
      * 
      * A non-negative value is the number of repetitions after the first playback. Zero means the
-     * sequence should play once. [#REPETITION_COUNT_UNKNOWN] means the container did not expose
-     * an edit list, and [#REPETITION_COUNT_INFINITE] means the sequence
+     * sequence should play once. [REPETITION_COUNT_UNKNOWN] means the container did not expose
+     * an edit list, and [REPETITION_COUNT_INFINITE] means the sequence
      * repeats indefinitely.
      * 
-     * @return the repetition count, [#REPETITION_COUNT_UNKNOWN], or [#REPETITION_COUNT_INFINITE]
+     * @return the repetition count, [REPETITION_COUNT_UNKNOWN], or [REPETITION_COUNT_INFINITE]
      */
     fun repetitionCount(): Int {
         return repetitionCount

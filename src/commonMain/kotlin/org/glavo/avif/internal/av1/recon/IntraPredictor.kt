@@ -101,16 +101,6 @@ internal class IntraPredictor
      * @param intraEdgeFilterEnabled whether directional intra-edge filtering is enabled by the sequence header
      * @param smoothEdgeReferences whether the neighboring reference edges are marked as smooth predictors
      */
-    /** Reconstructs one luma intra-predicted block directly into the destination plane.
-     * 
-     * @param plane the mutable destination plane
-     * @param x the zero-based horizontal sample coordinate
-     * @param y the zero-based vertical sample coordinate
-     * @param width the block width in samples
-     * @param height the block height in samples
-     * @param mode the luma intra prediction mode
-     * @param angleDelta the signed directional angle delta
-     */
     fun predictLuma(
         plane: MutableSamplePlane,
         x: Int,
@@ -475,16 +465,6 @@ internal class IntraPredictor
      * @param angleDelta the signed directional angle delta
      * @param intraEdgeFilterEnabled whether directional intra-edge filtering is enabled by the sequence header
      * @param smoothEdgeReferences whether the neighboring reference edges are marked as smooth predictors
-     */
-    /** Reconstructs one chroma intra-predicted block directly into the destination plane.
-     * 
-     * @param plane the mutable destination plane
-     * @param x the zero-based horizontal sample coordinate
-     * @param y the zero-based vertical sample coordinate
-     * @param width the block width in samples
-     * @param height the block height in samples
-     * @param mode the chroma intra prediction mode
-     * @param angleDelta the signed directional angle delta
      */
     fun predictChroma(
         plane: MutableSamplePlane,

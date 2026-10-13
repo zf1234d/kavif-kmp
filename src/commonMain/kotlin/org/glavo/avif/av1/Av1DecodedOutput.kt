@@ -14,7 +14,7 @@ import org.glavo.avif.internal.av1.output.YuvToRgbTransform
 
 /** Immutable decoded AV1 presentation output with YUV planes and frame metadata.
  * 
- * Plane access does not perform color conversion. [#toFrame()] converts the same output to packed
+ * Plane access does not perform color conversion. [toFrame()] converts the same output to packed
  * ARGB on first use and caches the resulting [Av1DecodedFrame]. */
 class Av1DecodedOutput internal constructor(
     planes: DecodedSurface,

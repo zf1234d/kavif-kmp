@@ -184,7 +184,7 @@ class FrameAssembly(
     /** Adds one arbitrary tile bitstream for partial camera-frame decoding.
      * 
      * This operation may be repeated for distinct tile indices, but it must not be mixed with
-     * [#addTileGroup(TileGroupHeader, TileBitstream[])].
+     * [addTileGroup].
      * 
      * @param tile the tile bitstream to add
      * @throws IllegalArgumentException if the tile index is outside the frame or was already added

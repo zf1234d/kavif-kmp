@@ -4047,7 +4047,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          * spatial layer from the chosen operating point.
          * 
          * @param item the image item
-         * @return the selected spatial-layer identifier, or [AvifImageSource#HIGHEST_SPATIAL_LAYER]
+         * @return the selected spatial-layer identifier, or [AvifImageSource.HIGHEST_SPATIAL_LAYER]
          * @throws AvifDecodeException if the item has more than one `lsel` property
          */
         fun selectedSpatialLayer(item: Item): Int {

@@ -261,7 +261,7 @@ class AvifPayload private constructor(
         /** Opens a buffered input over payloads in sequence.
          * 
          * Each payload remains a separate externally framed input unit as reported by
-         * [BufferedInput#currentUnitRemaining()]. Closing the returned input does not close any
+         * [BufferedInput.currentUnitRemaining()]. Closing the returned input does not close any
          * payload source.
          * 
          * @param payloads the payloads to read in order

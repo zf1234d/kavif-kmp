@@ -369,7 +369,7 @@ class AvifGainMapInfo private constructor(
 
     /** Returns the tone-mapped item ICC profile payload.
      * 
-     * ICC profiles are exposed as metadata only; the pure-Java decoder does not apply ICC color
+     * ICC profiles are exposed as metadata only; the decoder does not apply ICC color
      * transforms at runtime.
      * 
      * @return the tone-mapped item ICC profile payload, or `null` when absent

@@ -149,7 +149,7 @@ class Av1Decoder private constructor(
     /** Reads the next output frame as postprocessed YUV planes without RGB conversion.
      * 
      * This method applies the same operating-point, frame-output, and film-grain policies as
-     * [#readFrame()]. It may be interleaved with `readFrame`; each successful call consumes one
+     * [readFrame()]. It may be interleaved with `readFrame`; each successful call consumes one
      * presentation frame. The returned immutable snapshot retains its own sample storage and does
      * not depend on subsequent decoder operations.
      * 
@@ -1749,16 +1749,6 @@ class Av1Decoder private constructor(
          * 
          * @param source the channel to read
          * @param config the immutable decoder configuration
-         * @return the new AV1 decoder
-         * @throws IllegalArgumentException if the channel is selectable and configured as
-         * non-blocking
-         */
-        /** Opens a low-overhead AV1 decoder over a byte channel.
-         * 
-         * On success, the returned decoder owns and closes `source`. The channel must use blocking
-         * mode and remain blocking until the decoder is closed.
-         * 
-         * @param source the channel to read
          * @return the new AV1 decoder
          * @throws IllegalArgumentException if the channel is selectable and configured as
          * non-blocking

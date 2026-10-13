@@ -474,9 +474,8 @@ class YuvToRgbTransform private constructor(
 
         /** Selects a display transform for one AVIF container `nclx` color property.
          * 
-         * The pure Java output path currently models YUV matrix and range conversion. ICC profile
-         * application and transfer-function adaptation remain metadata-only because production code
-         * in this repository cannot depend on modules outside `java.base`.
+         * The output path currently models YUV matrix and range conversion. ICC profile
+         * application and transfer-function adaptation remain metadata-only.
          * 
          * @param colorInfo the AVIF container color information
          * @param monochrome whether the decoded AV1 planes are monochrome

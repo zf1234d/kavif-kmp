@@ -12,7 +12,7 @@ import org.glavo.avif.AvifImageInfo
  * 
  * Still images expose normalized standalone or grid-derived [AvifImageSource] instances. Image
  * sequences instead expose one AV1 payload per sample. Display metadata, timing, and item
- * transforms are retained by [#info()]. */
+ * transforms are retained by [info()]. */
 class AvifContainer {
     /** The parsed image metadata. */
     private val info: AvifImageInfo
