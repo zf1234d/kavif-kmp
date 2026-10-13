@@ -73,6 +73,11 @@ mavenPublishing {
                 url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                 distribution.set("repo")
             }
+            license {
+                name.set("Mozilla Public License 2.0")
+                url.set("https://www.mozilla.org/en-US/MPL/2.0/")
+                distribution.set("repo")
+            }
         }
         developers {
             developer {
