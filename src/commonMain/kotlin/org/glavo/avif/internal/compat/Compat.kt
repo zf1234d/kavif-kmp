@@ -5,8 +5,6 @@ package org.glavo.avif.internal.compat
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
-typealias AutoAvifCloseable = AutoCloseable
-
 open class AvifIoException : Exception {
     constructor(message: String?) : super(message)
     constructor(message: String?, cause: Throwable?) : super(message, cause)

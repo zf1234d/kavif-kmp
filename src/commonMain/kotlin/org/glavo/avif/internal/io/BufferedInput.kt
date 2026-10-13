@@ -3,7 +3,6 @@
 // Copyright (c) 2026 Glavo
 package org.glavo.avif.internal.io
 
-import org.glavo.avif.internal.compat.AutoAvifCloseable
 import org.glavo.avif.internal.compat.AvifIoException
 import org.glavo.avif.internal.compat.ByteBuf
 import org.glavo.avif.internal.compat.EOFException
@@ -13,7 +12,7 @@ import org.glavo.avif.internal.compat.shortToUnsignedInt
 import org.glavo.avif.internal.compat.toIntExact
 import kotlin.math.min
 
-abstract class BufferedInput : AutoAvifCloseable {
+abstract class BufferedInput : AutoCloseable {
     protected val buffer: ByteBuf
     protected var closed: Boolean = false
 

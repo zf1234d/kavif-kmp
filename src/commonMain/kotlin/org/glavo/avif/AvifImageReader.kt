@@ -34,7 +34,7 @@ import org.glavo.avif.internal.io.AvifDataSource
 class AvifImageReader internal constructor(
     source: AvifDataSource,
     factory: AvifImageReaderFactory
-) : AutoAvifCloseable {
+) : AutoCloseable {
     /** The immutable factory options used to create this reader. */
     private val factory: AvifImageReaderFactory
 
@@ -1253,7 +1253,7 @@ class AvifImageReader internal constructor(
     inner class SequenceDecoderCursor(
         payloads: Array<AvifPayload>,
         label: String
-    ) : AutoAvifCloseable {
+    ) : AutoCloseable {
         /** The immutable sequence payload descriptors. */
         val payloads: Array<AvifPayload>
 

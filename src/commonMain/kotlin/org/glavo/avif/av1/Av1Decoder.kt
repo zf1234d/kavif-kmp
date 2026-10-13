@@ -43,7 +43,7 @@ class Av1Decoder private constructor(
     source: BufferedInput,
     config: Av1DecoderConfig,
     annexB: Boolean
-) : AutoAvifCloseable {
+) : AutoCloseable {
     /** The forward-only buffered byte source. */
     private val source: BufferedInput
 

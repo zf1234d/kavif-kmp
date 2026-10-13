@@ -6,10 +6,9 @@ package org.glavo.avif.internal.io
 import org.glavo.avif.AvifDecodeException
 import org.glavo.avif.AvifErrorCode
 import org.glavo.avif.internal.compat.AvifIoException
-import org.glavo.avif.internal.compat.AutoAvifCloseable
 import org.glavo.avif.internal.compat.ByteBuf
 
-abstract class AvifDataSource : AutoAvifCloseable {
+abstract class AvifDataSource : AutoCloseable {
     abstract fun limit(): Long
     abstract fun isSeekable(): Boolean
     abstract fun readByte(position: Long): Byte
