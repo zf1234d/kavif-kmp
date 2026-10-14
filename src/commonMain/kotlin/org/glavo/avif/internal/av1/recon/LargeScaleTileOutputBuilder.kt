@@ -228,7 +228,7 @@ class LargeScaleTileOutputBuilder(
     fun build(): DecodedSurface {
         ensureMutable()
         built = true
-        val luma: PaddedPlane = PaddedPlane.Companion.fromOwnedSamples(
+        val luma: PaddedPlane = PaddedPlane.fromOwnedSamples(
             outputWidth,
             outputHeight,
             outputWidth,
@@ -239,13 +239,13 @@ class LargeScaleTileOutputBuilder(
         if (chromaFormat != Av1ChromaFormat.MONOCHROME) {
             val width: Int = chromaWidth(chromaFormat, outputWidth)
             val height: Int = chromaHeight(chromaFormat, outputHeight)
-            chromaU = PaddedPlane.Companion.fromOwnedSamples(
+            chromaU = PaddedPlane.fromOwnedSamples(
                 width,
                 height,
                 width,
                 requireNotNullCompat(chromaUSamples, "chromaUSamples")
             )
-            chromaV = PaddedPlane.Companion.fromOwnedSamples(
+            chromaV = PaddedPlane.fromOwnedSamples(
                 width,
                 height,
                 width,

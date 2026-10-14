@@ -280,7 +280,7 @@ internal class MutablePlaneBuffer constructor(
     fun takeStoredDecodedPlane(croppedWidth: Int, croppedHeight: Int): PaddedPlane {
         require(!(croppedWidth <= 0 || croppedWidth > storageWidth)) { "croppedWidth out of range: $croppedWidth" }
         require(!(croppedHeight <= 0 || croppedHeight > storageHeight)) { "croppedHeight out of range: $croppedHeight" }
-        return PaddedPlane.Companion.fromOwnedSamples(
+        return PaddedPlane.fromOwnedSamples(
             croppedWidth,
             croppedHeight,
             storageWidth,

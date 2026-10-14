@@ -63,7 +63,7 @@ class TilePartitionTreeReader constructor(
         val nonNullTileContext =
             requireNotNullCompat(tileContext, "tileContext")
         this.tileContext = nonNullTileContext
-        this.neighborContext = BlockNeighborContext.Companion.create(nonNullTileContext)
+        this.neighborContext = BlockNeighborContext.create(nonNullTileContext)
         this.syntaxReader = TileSyntaxReader(nonNullTileContext)
         this.blockHeaderReader = TileBlockHeaderReader(nonNullTileContext, strictStdCompliance)
         this.transformLayoutReader = TileTransformLayoutReader(nonNullTileContext)

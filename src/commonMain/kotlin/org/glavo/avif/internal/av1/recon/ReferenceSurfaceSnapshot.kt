@@ -36,7 +36,7 @@ data class ReferenceSurfaceSnapshot(
         decodedPlanes: DecodedSurface
     ) : this(
         frameHeader,
-        ReferenceFrameSyntaxState.Companion.from(frameSyntaxDecodeResult),
+        ReferenceFrameSyntaxState.from(frameSyntaxDecodeResult),
         decodedPlanes
     )
 

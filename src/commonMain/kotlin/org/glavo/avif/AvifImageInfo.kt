@@ -123,7 +123,7 @@ class AvifImageInfo private constructor(
         this.alphaPresent = explicitAlphaPresent
                 || containsAuxiliaryImageType(
             auxiliaryImageTypes,
-            AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE
+            AvifAuxiliaryImageInfo.ALPHA_TYPE
         )
                 || containsAlphaAuxiliaryImage(auxiliaryImages)
         this.alphaPremultiplied = this.alphaPresent && alphaPremultiplied
@@ -553,7 +553,7 @@ class AvifImageInfo private constructor(
     private fun containsAlphaMetadata(): Boolean {
         return containsAuxiliaryImageType(
             auxiliaryImageTypes,
-            AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE
+            AvifAuxiliaryImageInfo.ALPHA_TYPE
         )
                 || containsAlphaAuxiliaryImage(auxiliaryImages)
     }

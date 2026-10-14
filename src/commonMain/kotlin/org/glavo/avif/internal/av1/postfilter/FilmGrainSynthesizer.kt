@@ -239,7 +239,7 @@ object FilmGrainSynthesizer {
                 row
             )
         }
-        return PaddedPlane.Companion.fromOwnedSamples(
+        return PaddedPlane.fromOwnedSamples(
             lumaPlane.width(),
             lumaPlane.height(),
             lumaPlane.stride(),
@@ -406,7 +406,7 @@ object FilmGrainSynthesizer {
                 row
             )
         }
-        return PaddedPlane.Companion.fromOwnedSamples(
+        return PaddedPlane.fromOwnedSamples(
             chromaPlane.width(),
             chromaPlane.height(),
             chromaPlane.stride(),

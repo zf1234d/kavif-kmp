@@ -32,7 +32,7 @@ class FrameSyntaxDecoder constructor(
         if (referenceCdfFrameSyntaxResult == null)
             null
         else
-            ReferenceFrameSyntaxState.Companion.from(referenceCdfFrameSyntaxResult),
+            ReferenceFrameSyntaxState.from(referenceCdfFrameSyntaxResult),
         arrayOfNullsCompat<ReferenceFrameSyntaxState?>(8)
     )
 
@@ -90,12 +90,12 @@ class FrameSyntaxDecoder constructor(
         val nonNullAssembly = requireNotNullCompat(assembly, "assembly")
         val tileCount = nonNullAssembly.totalTiles()
         val referenceMotionVectorProjection: ReferenceMotionVectorProjection =
-            ReferenceMotionVectorProjection.Companion.create(
+            ReferenceMotionVectorProjection.create(
                 nonNullAssembly,
                 referenceFrameSyntaxStates
             )
         val referenceSegmentIdMap = referenceSegmentIdMap(nonNullAssembly)
-        val currentSegmentIdMap: SegmentIdMap = SegmentIdMap.Companion.create(nonNullAssembly)
+        val currentSegmentIdMap: SegmentIdMap = SegmentIdMap.create(nonNullAssembly)
         val segmentation = nonNullAssembly.frameHeader().segmentation()
         if (segmentation.enabled() && !segmentation.updateMap() && referenceSegmentIdMap != null) {
             currentSegmentIdMap.copyFrom(referenceSegmentIdMap)
@@ -105,13 +105,13 @@ class FrameSyntaxDecoder constructor(
             arrayOfNullsCompat<TemporalMotionField>(tileCount)
         val finalTileCdfContexts: Array<CdfContext> = arrayOfNullsCompat<CdfContext>(tileCount)
         val restorationUnitMap: RestorationUnitMap =
-            RestorationUnitMap.Companion.createEmpty(nonNullAssembly)
+            RestorationUnitMap.createEmpty(nonNullAssembly)
         val inheritedCdfContext = referenceCdfContext()
         for (tileIndex in 0..<tileCount) {
             tileRoots[tileIndex] = arrayOfNullsCompat<TilePartitionTreeReader.Node>(0)
             decodedTemporalMotionFields[tileIndex] = TemporalMotionField(0, 0)
             if (selectedTileIndex >= 0 && tileIndex != selectedTileIndex) {
-                finalTileCdfContexts[tileIndex] = CdfContext.Companion.createDefault(
+                finalTileCdfContexts[tileIndex] = CdfContext.createDefault(
                     nonNullAssembly.frameHeader().quantization().baseQIndex()
                 )
                 continue
@@ -134,7 +134,7 @@ class FrameSyntaxDecoder constructor(
             decodedTemporalMotionFields[tileIndex] = tileContext.decodedTemporalMotionField()
             finalTileCdfContexts[tileIndex] = tileContext.cdfContext()
         }
-        return FrameSyntaxDecodeResult.Companion.fromOwnedFrameRelativeState(
+        return FrameSyntaxDecodeResult.fromOwnedFrameRelativeState(
             nonNullAssembly,
             tileRoots,
             decodedTemporalMotionFields,
@@ -163,10 +163,10 @@ class FrameSyntaxDecoder constructor(
         inheritedCdfContext: CdfContext?
     ): TileDecodeContext {
         if (inheritedCdfContext == null) {
-            return TileDecodeContext.Companion.createWithOwnedCdfContext(
+            return TileDecodeContext.createWithOwnedCdfContext(
                 assembly,
                 tileIndex,
-                CdfContext.Companion.createDefault(
+                CdfContext.createDefault(
                     assembly.frameHeader().quantization().baseQIndex()
                 ),
                 referenceMotionVectorProjection,
@@ -174,7 +174,7 @@ class FrameSyntaxDecoder constructor(
                 referenceSegmentIdMap
             )
         }
-        return TileDecodeContext.Companion.create(
+        return TileDecodeContext.create(
             assembly,
             tileIndex,
             inheritedCdfContext,

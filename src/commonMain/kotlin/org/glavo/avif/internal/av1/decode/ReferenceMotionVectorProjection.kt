@@ -625,7 +625,7 @@ class ReferenceMotionVectorProjection private constructor(
                 row = (row - (row shr 15)) and 1.inv()
                 column = (column - (column shr 15)) and 1.inv()
             }
-            return if (row == 0 && column == 0) MotionVector.Companion.zero() else MotionVector(
+            return if (row == 0 && column == 0) MotionVector.zero() else MotionVector(
                 row,
                 column
             )

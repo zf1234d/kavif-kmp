@@ -1484,7 +1484,7 @@ class CdfContext private constructor(
 
     companion object {
         /** The transformed default skip CDFs. */
-        val DEFAULT_SKIP_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_SKIP_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(31671),
                 intArrayOf(16515),
@@ -1493,7 +1493,7 @@ class CdfContext private constructor(
         )
 
         /** The transformed default skip-mode CDFs. */
-        val DEFAULT_SKIP_MODE_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_SKIP_MODE_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(32621),
                 intArrayOf(20708),
@@ -1502,7 +1502,7 @@ class CdfContext private constructor(
         )
 
         /** The transformed default intra/inter decision CDFs. */
-        val DEFAULT_INTRA_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_INTRA_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(806),
                 intArrayOf(16662),
@@ -1513,7 +1513,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound-reference decision CDFs. */
         val DEFAULT_COMPOUND_REFERENCE_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(26828),
                     intArrayOf(24035),
@@ -1525,7 +1525,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound-direction decision CDFs. */
         val DEFAULT_COMPOUND_DIRECTION_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(1198),
                     intArrayOf(2070),
@@ -1537,7 +1537,7 @@ class CdfContext private constructor(
 
         /** The transformed default single-reference selection CDFs. */
         val DEFAULT_SINGLE_REFERENCE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(intArrayOf(4897), intArrayOf(16973), intArrayOf(29744)),
                     arrayOf<IntArray>(intArrayOf(1555), intArrayOf(16751), intArrayOf(30279)),
@@ -1550,7 +1550,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound forward-reference selection CDFs. */
         val DEFAULT_COMPOUND_FORWARD_REFERENCE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(intArrayOf(4946), intArrayOf(19891), intArrayOf(30731)),
                     arrayOf<IntArray>(intArrayOf(9468), intArrayOf(22441), intArrayOf(31059)),
@@ -1560,7 +1560,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound backward-reference selection CDFs. */
         val DEFAULT_COMPOUND_BACKWARD_REFERENCE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(intArrayOf(2235), intArrayOf(17182), intArrayOf(30606)),
                     arrayOf<IntArray>(intArrayOf(1423), intArrayOf(15175), intArrayOf(30489))
@@ -1569,7 +1569,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound unidirectional-reference selection CDFs. */
         val DEFAULT_COMPOUND_UNIDIRECTIONAL_REFERENCE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(intArrayOf(5284), intArrayOf(23152), intArrayOf(31774)),
                     arrayOf<IntArray>(intArrayOf(3865), intArrayOf(14173), intArrayOf(25120)),
@@ -1579,7 +1579,7 @@ class CdfContext private constructor(
 
         /** The transformed default single-reference new-motion-vector CDFs. */
         val DEFAULT_SINGLE_INTER_NEWMV_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(24035),
                     intArrayOf(16630),
@@ -1592,7 +1592,7 @@ class CdfContext private constructor(
 
         /** The transformed default single-reference global-motion CDFs. */
         val DEFAULT_SINGLE_INTER_GLOBALMV_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(2175),
                     intArrayOf(1054)
@@ -1601,7 +1601,7 @@ class CdfContext private constructor(
 
         /** The transformed default single-reference reference-motion-vector CDFs. */
         val DEFAULT_SINGLE_INTER_REFERENCE_MV_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(23974),
                     intArrayOf(24188),
@@ -1613,7 +1613,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default dynamic-reference-list selection CDFs. */
-        val DEFAULT_DRL_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_DRL_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(13104),
                 intArrayOf(24560),
@@ -1623,7 +1623,7 @@ class CdfContext private constructor(
 
         /** The transformed default compound inter-mode CDFs. */
         val DEFAULT_COMPOUND_INTER_MODE_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(7760, 13823, 15808, 17641, 19156, 20666, 26891),
                     intArrayOf(10730, 19452, 21145, 22749, 24039, 25131, 28724),
@@ -1637,7 +1637,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default motion-mode CDFs. */
-        val DEFAULT_MOTION_MODE_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_MOTION_MODE_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(10923, 21845),
                 intArrayOf(10923, 21845),
@@ -1665,7 +1665,7 @@ class CdfContext private constructor(
         )
 
         /** The transformed default OBMC selection CDFs. */
-        val DEFAULT_OBMC_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_OBMC_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(16384),
                 intArrayOf(16384),
@@ -1694,7 +1694,7 @@ class CdfContext private constructor(
 
         /** The transformed default joint-compound selection CDFs. */
         val DEFAULT_JOINT_COMPOUND_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(18244),
                     intArrayOf(12865),
@@ -1706,7 +1706,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default masked-compound selection CDFs. */
-        val DEFAULT_MASK_COMPOUND_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_MASK_COMPOUND_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(26607),
                 intArrayOf(22891),
@@ -1719,7 +1719,7 @@ class CdfContext private constructor(
 
         /** The transformed default wedge-vs-segment compound CDFs. */
         val DEFAULT_WEDGE_COMPOUND_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(23431),
                     intArrayOf(13171),
@@ -1734,7 +1734,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default inter-intra enable CDFs. */
-        val DEFAULT_INTER_INTRA_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_INTER_INTRA_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(16384),
                 intArrayOf(26887),
@@ -1745,7 +1745,7 @@ class CdfContext private constructor(
 
         /** The transformed default inter-intra prediction-mode CDFs. */
         val DEFAULT_INTER_INTRA_MODE_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(8192, 16384, 24576),
                     intArrayOf(1875, 11082, 27332),
@@ -1756,7 +1756,7 @@ class CdfContext private constructor(
 
         /** The transformed default inter-intra wedge enable CDFs. */
         val DEFAULT_INTER_INTRA_WEDGE_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(20036),
                     intArrayOf(24957),
@@ -1769,7 +1769,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default wedge-index CDFs. */
-        val DEFAULT_WEDGE_INDEX_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_WEDGE_INDEX_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(
                     2438,
@@ -1929,7 +1929,7 @@ class CdfContext private constructor(
 
         /** The transformed default switchable interpolation-filter CDFs. */
         val DEFAULT_INTERPOLATION_FILTER_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(31935, 32720),
@@ -1956,7 +1956,7 @@ class CdfContext private constructor(
 
         /** The transformed default transform-size CDFs. */
         val DEFAULT_TRANSFORM_SIZE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(19968),
@@ -1983,7 +1983,7 @@ class CdfContext private constructor(
 
         /** The transformed default inter transform-partition CDFs. */
         val DEFAULT_TRANSFORM_PARTITION_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(28581),
                     intArrayOf(23846),
@@ -2011,7 +2011,7 @@ class CdfContext private constructor(
 
         /** The transformed default inter transform-type CDFs for transform set 1. */
         val DEFAULT_INTER_TRANSFORM_TYPE_SET_1_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(
                         4458,
@@ -2056,7 +2056,7 @@ class CdfContext private constructor(
 
         /** The transformed default inter transform-type CDFs for the reduced/large transform set. */
         val DEFAULT_INTER_TRANSFORM_TYPE_SET_3_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(16384),
                     intArrayOf(4167),
@@ -2067,7 +2067,7 @@ class CdfContext private constructor(
 
         /** The transformed default intra transform-type CDFs for transform set 1. */
         val DEFAULT_INTRA_TRANSFORM_TYPE_SET_1_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(1535, 8035, 9461, 12751, 23467, 27825),
@@ -2104,7 +2104,7 @@ class CdfContext private constructor(
 
         /** The transformed default intra transform-type CDFs for transform set 2. */
         val DEFAULT_INTRA_TRANSFORM_TYPE_SET_2_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(6554, 13107, 19661, 26214),
@@ -2156,7 +2156,7 @@ class CdfContext private constructor(
 
         /** The transformed default DC-sign CDFs for luma and chroma planes. */
         val DEFAULT_DC_SIGN_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(16000),
@@ -2176,7 +2176,7 @@ class CdfContext private constructor(
         val DEFAULT_DELTA_Q_CDF: IntArray = inverse(28160, 32120, 32677)
 
         /** The transformed default delta-lf CDFs. */
-        val DEFAULT_DELTA_LF_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_DELTA_LF_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(28160, 32120, 32677),
                 intArrayOf(28160, 32120, 32677),
@@ -2192,7 +2192,7 @@ class CdfContext private constructor(
 
         /** The transformed default motion-vector class CDFs for vertical and horizontal components. */
         val DEFAULT_MOTION_VECTOR_CLASS_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(
                         28672,
@@ -2212,7 +2212,7 @@ class CdfContext private constructor(
 
         /** The transformed default motion-vector sign CDFs for vertical and horizontal components. */
         val DEFAULT_MOTION_VECTOR_SIGN_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(16384),
                     intArrayOf(16384)
@@ -2221,7 +2221,7 @@ class CdfContext private constructor(
 
         /** The transformed default class-0 motion-vector magnitude CDFs for vertical and horizontal components. */
         val DEFAULT_MOTION_VECTOR_CLASS0_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(27648),
                     intArrayOf(27648)
@@ -2230,7 +2230,7 @@ class CdfContext private constructor(
 
         /** The transformed default class-0 fractional motion-vector CDFs for vertical and horizontal components. */
         val DEFAULT_MOTION_VECTOR_CLASS0_FP_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(16384, 24576, 26624),
@@ -2245,7 +2245,7 @@ class CdfContext private constructor(
 
         /** The transformed default class-0 high-precision motion-vector CDFs. */
         val DEFAULT_MOTION_VECTOR_CLASS0_HP_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(20480),
                     intArrayOf(20480)
@@ -2254,7 +2254,7 @@ class CdfContext private constructor(
 
         /** The transformed default non-class-0 motion-vector bit CDFs for vertical and horizontal components. */
         val DEFAULT_MOTION_VECTOR_CLASSN_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(17408),
@@ -2285,7 +2285,7 @@ class CdfContext private constructor(
 
         /** The transformed default non-class-0 fractional motion-vector CDFs. */
         val DEFAULT_MOTION_VECTOR_CLASSN_FP_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(8192, 17408, 21248),
                     intArrayOf(8192, 17408, 21248)
@@ -2294,7 +2294,7 @@ class CdfContext private constructor(
 
         /** The transformed default non-class-0 high-precision motion-vector CDFs. */
         val DEFAULT_MOTION_VECTOR_CLASSN_HP_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(16384),
                     intArrayOf(16384)
@@ -2315,7 +2315,7 @@ class CdfContext private constructor(
             inverse(9413, 22581)
 
         /** The transformed default luma intra-mode CDFs. */
-        val DEFAULT_Y_MODE_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_Y_MODE_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(
                     22801,
@@ -2378,7 +2378,7 @@ class CdfContext private constructor(
 
         /** The transformed default `use_filter_intra` CDFs. */
         val DEFAULT_USE_FILTER_INTRA_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(4621),
                     intArrayOf(6743),
@@ -2411,7 +2411,7 @@ class CdfContext private constructor(
 
         /** The transformed default chroma intra-mode CDFs. */
         val DEFAULT_UV_MODE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(
@@ -2799,7 +2799,7 @@ class CdfContext private constructor(
 
         /** The transformed default partition CDFs. */
         val DEFAULT_PARTITION_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(27899, 28219, 28529, 32484, 32539, 32619, 32639),
@@ -2836,7 +2836,7 @@ class CdfContext private constructor(
 
         /** The transformed default luma palette-use CDFs. */
         val DEFAULT_LUMA_PALETTE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(31676),
@@ -2878,7 +2878,7 @@ class CdfContext private constructor(
 
         /** The transformed default palette-size CDFs for luma and chroma planes. */
         val DEFAULT_PALETTE_SIZE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(7952, 13000, 18149, 21478, 25527, 29241),
@@ -2903,7 +2903,7 @@ class CdfContext private constructor(
 
         /** The transformed default chroma palette-use CDFs. */
         val DEFAULT_CHROMA_PALETTE_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(32461),
                     intArrayOf(21488)
@@ -2912,7 +2912,7 @@ class CdfContext private constructor(
 
         /** The transformed default palette color-map CDFs for luma and chroma planes. */
         val DEFAULT_COLOR_MAP_CDFS: Array<Array<Array<IntArray>>> =
-            Companion.inverse4d(
+            inverse4d(
                 arrayOf<Array<Array<IntArray>>>(
                     arrayOf<Array<IntArray>>(
                         arrayOf<IntArray>(
@@ -3021,7 +3021,7 @@ class CdfContext private constructor(
 
         /** The transformed default segmentation-prediction CDFs. */
         val DEFAULT_SEGMENT_PREDICTION_CDFS: Array<IntArray> =
-            Companion.inverse2d(
+            inverse2d(
                 arrayOf<IntArray>(
                     intArrayOf(16384),
                     intArrayOf(16384),
@@ -3030,7 +3030,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default segment-id CDFs. */
-        val DEFAULT_SEGMENT_ID_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_SEGMENT_ID_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(5622, 7893, 16093, 18233, 27809, 28373, 32533),
                 intArrayOf(14274, 18230, 22557, 24935, 29980, 30851, 32344),
@@ -3040,7 +3040,7 @@ class CdfContext private constructor(
 
         /** The transformed default key-frame luma intra-mode CDFs. */
         val DEFAULT_KEY_FRAME_Y_MODE_CDFS: Array<Array<IntArray>> =
-            Companion.inverse3d(
+            inverse3d(
                 arrayOf<Array<IntArray>>(
                     arrayOf<IntArray>(
                         intArrayOf(
@@ -3406,7 +3406,7 @@ class CdfContext private constructor(
             )
 
         /** The transformed default directional angle-delta CDFs. */
-        val DEFAULT_ANGLE_DELTA_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_ANGLE_DELTA_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(2180, 5032, 7567, 22776, 26989, 30217),
                 intArrayOf(2301, 5608, 8801, 23487, 26974, 30330),
@@ -3424,7 +3424,7 @@ class CdfContext private constructor(
             inverse(1418, 2123, 13340, 18405, 26972, 28343, 32294)
 
         /** The transformed default CFL-alpha CDFs. */
-        val DEFAULT_CFL_ALPHA_CDFS: Array<IntArray> = Companion.inverse2d(
+        val DEFAULT_CFL_ALPHA_CDFS: Array<IntArray> = inverse2d(
             arrayOf<IntArray>(
                 intArrayOf(
                     7637,

@@ -32,7 +32,7 @@ class BoxInput private constructor(source: AvifDataSource, start: Int, end: Int)
      * @param source the complete source bytes
      */
     constructor(source: ByteArray) : this(
-        AvifDataSource.Companion.ofBytes(
+        AvifDataSource.ofBytes(
             requireNotNullCompat(
                 source,
                 "source"

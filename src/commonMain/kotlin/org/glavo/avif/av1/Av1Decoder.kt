@@ -96,7 +96,7 @@ class Av1Decoder private constructor(
         this.source = requireNotNullCompat(source, "source")
         this.config = requireNotNullCompat(config, "config")
         this.obuReader = if (annexB)
-            ObuStreamReader.Companion.forAnnexB(source, config.obuPayloadSizeLimit())
+            ObuStreamReader.forAnnexB(source, config.obuPayloadSizeLimit())
         else
             ObuStreamReader(source, config.obuPayloadSizeLimit())
         this.referenceSlots = arrayOfNullsCompat<ReferenceSurfaceSnapshot?>(8)
@@ -178,7 +178,7 @@ class Av1Decoder private constructor(
             val packet = obuReader.readObu()
             if (packet == null) {
                 if (pendingFrameAssembly != null) {
-                    throw Companion.incompleteFrameAtEndOfStream(pendingFrameAssembly!!)
+                    throw incompleteFrameAtEndOfStream(pendingFrameAssembly!!)
                 }
                 if (pendingLayeredOutput != null) {
                     val output = pendingLayeredOutput
@@ -603,7 +603,7 @@ class Av1Decoder private constructor(
                     "Combined frame OBU must not carry tile data when show_existing_frame is set"
                 )
             }
-            return CombinedFrameStart.Companion.immediateOutput(
+            return CombinedFrameStart.immediateOutput(
                 outputExistingFrame(
                     packet,
                     frameHeader
@@ -628,7 +628,7 @@ class Av1Decoder private constructor(
         }
         reader.byteAlign()
         appendTileGroup(assembly, packet, tileGroupHeader, reader.byteOffset())
-        return CombinedFrameStart.Companion.frameAssembly(assembly)
+        return CombinedFrameStart.frameAssembly(assembly)
     }
 
     /** Finalizes a completed frame assembly by refreshing reference slots and optionally preparing
@@ -731,7 +731,7 @@ class Av1Decoder private constructor(
             frameHeader,
             assembly.sequenceHeader().colorConfig()
         )
-        return PendingOutput.Companion.normal(
+        return PendingOutput.normal(
             presentationPlanes,
             assembly.sequenceHeader().colorConfig(),
             frameHeader,
@@ -1063,7 +1063,7 @@ class Av1Decoder private constructor(
         }
 
         val outputPlanes = outputBuilder.build()
-        return PendingOutput.Companion.normal(
+        return PendingOutput.normal(
             outputPlanes,
             cameraSequenceHeader.colorConfig(),
             cameraFrameHeader,
@@ -1266,7 +1266,7 @@ class Av1Decoder private constructor(
             referencedFrameHeader,
             referenceSurfaceSnapshot.frameSyntaxState.sequenceHeader().colorConfig()
         )
-        return PendingOutput.Companion.existing(
+        return PendingOutput.existing(
             presentationPlanes,
             referenceSurfaceSnapshot,
             outputRequestHeader,
@@ -1430,8 +1430,8 @@ class Av1Decoder private constructor(
             if (cdfReferenceState != null)
                 cdfReferenceState.savedFrameCdfContext()
             else
-                CdfContext.Companion.createDefault(frameHeader.quantization().baseQIndex())
-        return ReferenceFrameSyntaxState.Companion.fromOwnedSavedFrameCdfContext(
+                CdfContext.createDefault(frameHeader.quantization().baseQIndex())
+        return ReferenceFrameSyntaxState.fromOwnedSavedFrameCdfContext(
             syntaxDecodeResult,
             storedFrameCdfContext
         )

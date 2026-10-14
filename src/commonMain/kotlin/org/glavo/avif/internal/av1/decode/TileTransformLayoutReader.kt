@@ -116,7 +116,7 @@ class TileTransformLayoutReader(tileContext: TileDecodeContext) {
             variableLumaTransformTree = interTransformResult.variableTransformTree
         }
 
-        return TransformLayout.Companion.fromOwnedUnits(
+        return TransformLayout.fromOwnedUnits(
             framePosition(position),
             size,
             visibleWidth4,

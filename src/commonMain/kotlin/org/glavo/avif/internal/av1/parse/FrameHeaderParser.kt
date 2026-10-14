@@ -264,7 +264,7 @@ object FrameHeaderParser {
             val existingFilmGrain = if (existingFrameHeader != null)
                 existingFrameHeader.filmGrain()
             else
-                FilmGrainParams.Companion.disabled()
+                FilmGrainParams.disabled()
 
             return FrameHeader(
                 temporalId,
@@ -1480,7 +1480,7 @@ object FrameHeaderParser {
         val parameters: Array<GlobalMotionParams> =
             arrayOfNullsCompat<GlobalMotionParams>(REFERENCES_PER_FRAME)
         if (!isInterOrSwitch(frameType)) {
-            fillCompat(parameters, GlobalMotionParams.Companion.identity())
+            fillCompat(parameters, GlobalMotionParams.identity())
             return parameters
         }
 
@@ -1495,7 +1495,7 @@ object FrameHeaderParser {
 
         for (referenceFrame in parameters.indices) {
             val referenceParameters = if (primaryReferenceHeader == null)
-                GlobalMotionParams.Companion.identity()
+                GlobalMotionParams.identity()
             else
                 primaryReferenceHeader.globalMotion(referenceFrame)
             parameters[referenceFrame] = parseGlobalMotionParameters(
@@ -1521,7 +1521,7 @@ object FrameHeaderParser {
         allowHighPrecisionMotionVectors: Boolean
     ): GlobalMotionParams {
         if (!reader.readFlag()) {
-            return GlobalMotionParams.Companion.identity()
+            return GlobalMotionParams.identity()
         }
 
         val type: GlobalMotionType?
@@ -1534,7 +1534,7 @@ object FrameHeaderParser {
                 GlobalMotionType.AFFINE
         }
 
-        val matrix: IntArray = GlobalMotionParams.Companion.identity().matrix()
+        val matrix: IntArray = GlobalMotionParams.identity().matrix()
         val translationBits: Int
         val translationShift: Int
         if (type == GlobalMotionType.ROTATION_ZOOM || type == GlobalMotionType.AFFINE) {
@@ -1684,11 +1684,11 @@ object FrameHeaderParser {
         referenceFrameIndices: IntArray
     ): FilmGrainParams {
         if (!sequenceHeader.features().filmGrainPresent() || (!showFrame && !showableFrame)) {
-            return FilmGrainParams.Companion.disabled()
+            return FilmGrainParams.disabled()
         }
 
         if (!reader.readFlag()) {
-            return FilmGrainParams.Companion.disabled()
+            return FilmGrainParams.disabled()
         }
 
         val grainSeed = readInt(reader, 16)

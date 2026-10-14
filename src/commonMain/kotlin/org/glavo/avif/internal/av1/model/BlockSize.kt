@@ -203,7 +203,7 @@ enum class BlockSize
                 if (mapped != null) {
                     mapped
                 } else {
-                    TransformSize.Companion.forDimensions(max(1, width4 shr 1), height4)
+                    TransformSize.forDimensions(max(1, width4 shr 1), height4)
                 }
             }
 

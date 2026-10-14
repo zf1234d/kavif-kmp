@@ -318,7 +318,7 @@ class TileBlockHeaderReader constructor(
                 nonNullSize,
                 fallback
             )
-            motionVector0 = InterMotionVector.Companion.resolved(
+            motionVector0 = InterMotionVector.resolved(
                 syntaxReader.readIntrabcMotionVectorResidual(
                     predictor
                 )
@@ -769,7 +769,7 @@ class TileBlockHeaderReader constructor(
                 if (compoundReference)
                     globalMotionVector(position, size, referenceFrame1)
                 else
-                    MotionVector.Companion.zero(),
+                    MotionVector.zero(),
                 tileContext.frameHeader().globalMotion(referenceFrame0).type(),
                 if (compoundReference)
                     tileContext.frameHeader().globalMotion(referenceFrame1).type()
@@ -829,7 +829,7 @@ class TileBlockHeaderReader constructor(
         }
 
         if (segmentData.globalMotion() || segmentData.skip()) {
-            val globalMotionVector: InterMotionVector = InterMotionVector.Companion.resolved(
+            val globalMotionVector: InterMotionVector = InterMotionVector.resolved(
                 globalMotionVector(position, size, referenceFrame0)
             )
             return InterModeSelection(
@@ -1168,7 +1168,7 @@ class TileBlockHeaderReader constructor(
         val frameHeader = tileContext.frameHeader()
         val parameters = frameHeader.globalMotion(referenceFrame)
         if (parameters.type() == GlobalMotionType.IDENTITY) {
-            return MotionVector.Companion.zero()
+            return MotionVector.zero()
         }
 
         var rowEighthPel: Int
@@ -1211,7 +1211,7 @@ class TileBlockHeaderReader constructor(
     private fun decodeNewMotionVectorResidual(predictor: InterMotionVector): InterMotionVector {
         val nonNullPredictor = requireNotNullCompat(predictor, "predictor")
         val decodedMotionVector = syntaxReader.readMotionVectorResidual(nonNullPredictor.vector)
-        return InterMotionVector.Companion.resolved(decodedMotionVector)
+        return InterMotionVector.resolved(decodedMotionVector)
     }
 
     /** Decodes the provisional dynamic-reference-list index for a `NEWMV` single-reference block.
@@ -3324,7 +3324,7 @@ class TileBlockHeaderReader constructor(
             val nonNullGlobalMotionVector =
                 requireNotNullCompat(globalMotionVector, "globalMotionVector")
             return when (nonNullSingleInterMode) {
-                SingleInterPredictionMode.GLOBALMV -> InterMotionVector.Companion.resolved(
+                SingleInterPredictionMode.GLOBALMV -> InterMotionVector.resolved(
                     nonNullGlobalMotionVector
                 )
 
@@ -3354,7 +3354,7 @@ class TileBlockHeaderReader constructor(
             val nonNullCandidate =
                 requireNotNullCompat(candidate, "candidate")
             if (nonNullCompoundInterMode == CompoundInterPredictionMode.GLOBALMV_GLOBALMV) {
-                return InterMotionVector.Companion.resolved(
+                return InterMotionVector.resolved(
                     requireNotNullCompat(
                         globalMotionVector,
                         "globalMotionVector"
@@ -3386,7 +3386,7 @@ class TileBlockHeaderReader constructor(
             val nonNullCandidate =
                 requireNotNullCompat(candidate, "candidate")
             if (nonNullCompoundInterMode == CompoundInterPredictionMode.GLOBALMV_GLOBALMV) {
-                return InterMotionVector.Companion.resolved(
+                return InterMotionVector.resolved(
                     requireNotNullCompat(
                         globalMotionVector,
                         "globalMotionVector"

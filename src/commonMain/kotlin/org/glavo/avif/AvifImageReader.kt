@@ -471,7 +471,7 @@ class AvifImageReader internal constructor(
         if (depthSource != null) {
             return decodeImageSource(depthSource, "Depth auxiliary AV1 image").planes
         }
-        if (!hasAuxiliaryType(container.info(), AvifAuxiliaryImageInfo.Companion.DEPTH_TYPE)) {
+        if (!hasAuxiliaryType(container.info(), AvifAuxiliaryImageInfo.DEPTH_TYPE)) {
             return null
         }
         throw unsupported("Depth auxiliary item type is not decodable as AV1 planes")
@@ -1444,12 +1444,12 @@ class AvifImageReader internal constructor(
                 planes.bitDepth().defaultPixelFormat()
             try {
                 val transform: YuvToRgbTransform = if (colorInfo != null)
-                    YuvToRgbTransform.Companion.fromColorInfo(
+                    YuvToRgbTransform.fromColorInfo(
                         colorInfo,
                         planes.chromaFormat() == Av1ChromaFormat.MONOCHROME
                     )
                 else
-                    YuvToRgbTransform.Companion.fromColorConfig(av1ColorConfig)
+                    YuvToRgbTransform.fromColorConfig(av1ColorConfig)
                 val decodedPlanes: DecodedSurface = toDecodedPlanes(planes)
                 if (pixelFormat == AvifPixelFormat.ARGB_8888) {
                     return AvifFrame.fromOwnedPixels(

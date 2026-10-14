@@ -129,7 +129,7 @@ internal class TileLoopRestorationReader(
     private fun readUnit(plane: Int): RestorationUnit {
         val unitType = syntaxReader.readRestorationUnitType(frameTypes[plane])
         if (unitType == RestorationType.NONE) {
-            return RestorationUnit.Companion.none()
+            return RestorationUnit.none()
         }
         if (unitType == RestorationType.WIENER) {
             return readWienerUnit(plane)
@@ -161,7 +161,7 @@ internal class TileLoopRestorationReader(
                 bitstreamCoefficients[pass][coefficient] = value
             }
         }
-        return RestorationUnit.Companion.wiener(
+        return RestorationUnit.wiener(
             bitstreamCoefficients[1][0],
             bitstreamCoefficients[1][1],
             bitstreamCoefficients[1][2],
@@ -197,7 +197,7 @@ internal class TileLoopRestorationReader(
             }
             coefficients[coefficient] = value
         }
-        return RestorationUnit.Companion.selfGuided(checkedSet, coefficients[0], coefficients[1])
+        return RestorationUnit.selfGuided(checkedSet, coefficients[0], coefficients[1])
     }
 
     /** Returns the chroma horizontal subsampling shift for the active chroma format.

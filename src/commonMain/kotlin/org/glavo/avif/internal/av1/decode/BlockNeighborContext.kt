@@ -784,8 +784,8 @@ class BlockNeighborContext private constructor(
         require(!(visibleWidth4 <= 0 || visibleHeight4 <= 0)) { "Intrabc block lies outside the tile" }
 
         val zeroGlobalMotion = ExactSpatialGlobalMotion(
-            MotionVector.Companion.zero(),
-            MotionVector.Companion.zero(),
+            MotionVector.zero(),
+            MotionVector.zero(),
             false,
             false
         )
@@ -1220,8 +1220,8 @@ class BlockNeighborContext private constructor(
         while (candidateCount < 2) {
             candidates[candidateCount++] = ProvisionalMotionVectorCandidate(
                 2,
-                InterMotionVector.Companion.predicted(nonNullGlobalMotionVector0),
-                if (compoundReference) InterMotionVector.Companion.predicted(
+                InterMotionVector.predicted(nonNullGlobalMotionVector0),
+                if (compoundReference) InterMotionVector.predicted(
                     nonNullGlobalMotionVector1
                 ) else null,
                 true
@@ -1236,7 +1236,7 @@ class BlockNeighborContext private constructor(
             haveNewMotionVectorMatch
         )
 
-        return ProvisionalInterModeContext.Companion.fromOwnedCandidates(
+        return ProvisionalInterModeContext.fromOwnedCandidates(
             refMvsContextSummary.singleNewMvContext,
             globalMotionContext,
             refMvsContextSummary.singleReferenceMvContext,
@@ -1602,7 +1602,7 @@ class BlockNeighborContext private constructor(
         val candidate =
             ProvisionalMotionVectorCandidate(
                 2,
-                InterMotionVector.Companion.predicted(vector),
+                InterMotionVector.predicted(vector),
                 null,
                 false
             )
@@ -2435,7 +2435,7 @@ class BlockNeighborContext private constructor(
             aboveSegmentPredicted[x4] = segmentPredicted
             abovePaletteSize[x4] = paletteSize
             aboveChromaPaletteSize[x4] = chromaPaletteSize
-            Companion.copyPaletteEntries(
+            copyPaletteEntries(
                 nonNullHeader,
                 abovePaletteEntries[0][x4],
                 abovePaletteEntries[1][x4],
@@ -2459,7 +2459,7 @@ class BlockNeighborContext private constructor(
             leftSegmentPredicted[y4] = segmentPredicted
             leftPaletteSize[y4] = paletteSize
             leftChromaPaletteSize[y4] = chromaPaletteSize
-            Companion.copyPaletteEntries(
+            copyPaletteEntries(
                 nonNullHeader,
                 leftPaletteEntries[0][y4],
                 leftPaletteEntries[1][y4],
@@ -3559,7 +3559,7 @@ class BlockNeighborContext private constructor(
     companion object {
         /** Shared provisional zero vector used when a decoded block has no stored motion vector. */
         val PREDICTED_ZERO_MOTION_VECTOR: InterMotionVector =
-            InterMotionVector.Companion.predicted(MotionVector.Companion.zero())
+            InterMotionVector.predicted(MotionVector.zero())
 
         /** The maximum number of provisional motion-vector candidate entries retained locally. */
         private const val PROVISIONAL_CANDIDATE_CAPACITY = 8
@@ -3884,7 +3884,7 @@ class BlockNeighborContext private constructor(
         ): ProvisionalMotionVectorCandidate {
             return ProvisionalMotionVectorCandidate(
                 2,
-                InterMotionVector.Companion.predicted(
+                InterMotionVector.predicted(
                     compoundExtendedComponent(
                         matching0,
                         alternate0,
@@ -3892,7 +3892,7 @@ class BlockNeighborContext private constructor(
                         index
                     )
                 ),
-                InterMotionVector.Companion.predicted(
+                InterMotionVector.predicted(
                     compoundExtendedComponent(
                         matching1,
                         alternate1,
@@ -4113,14 +4113,14 @@ class BlockNeighborContext private constructor(
                 if (nonNullHeader.referenceFrame1() < 0) {
                     return null
                 }
-                return TemporalMotionBlock.Companion.compoundReference(
+                return TemporalMotionBlock.compoundReference(
                     nonNullHeader.referenceFrame0(),
                     nonNullHeader.referenceFrame1(),
                     requireNotNullCompat(motionVector0, "motionVector0"),
                     requireNotNullCompat(motionVector1, "motionVector1")
                 )
             }
-            return TemporalMotionBlock.Companion.singleReference(
+            return TemporalMotionBlock.singleReference(
                 nonNullHeader.referenceFrame0(),
                 requireNotNullCompat(motionVector0, "motionVector0")
             )
@@ -4356,9 +4356,9 @@ class BlockNeighborContext private constructor(
             val candidate =
                 ProvisionalMotionVectorCandidate(
                     2,
-                    InterMotionVector.Companion.predicted(motionVector0),
+                    InterMotionVector.predicted(motionVector0),
                     if (compoundReference)
-                        InterMotionVector.Companion.predicted(
+                        InterMotionVector.predicted(
                             requireNotNullCompat(
                                 motionVector1,
                                 "motionVector1"
@@ -4439,11 +4439,11 @@ class BlockNeighborContext private constructor(
                 return ProvisionalMotionVectorCandidate(
                     weight,
                     if (replaceGlobalMotion && nonNullGlobalMotion.primaryNonTranslation)
-                        InterMotionVector.Companion.resolved(nonNullGlobalMotion.primary)
+                        InterMotionVector.resolved(nonNullGlobalMotion.primary)
                     else
                         nonNullBlock.motionVector0(),
                     if (replaceGlobalMotion && nonNullGlobalMotion.secondaryNonTranslation)
-                        InterMotionVector.Companion.resolved(nonNullGlobalMotion.secondary)
+                        InterMotionVector.resolved(nonNullGlobalMotion.secondary)
                     else
                         nonNullBlock.motionVector1(),
                     false
@@ -4453,7 +4453,7 @@ class BlockNeighborContext private constructor(
                 return ProvisionalMotionVectorCandidate(
                     weight,
                     if (replaceGlobalMotion && nonNullGlobalMotion.primaryNonTranslation)
-                        InterMotionVector.Companion.resolved(nonNullGlobalMotion.primary)
+                        InterMotionVector.resolved(nonNullGlobalMotion.primary)
                     else
                         nonNullBlock.motionVector0(),
                     null,
@@ -4464,7 +4464,7 @@ class BlockNeighborContext private constructor(
                 return ProvisionalMotionVectorCandidate(
                     weight,
                     if (replaceGlobalMotion && nonNullGlobalMotion.primaryNonTranslation)
-                        InterMotionVector.Companion.resolved(nonNullGlobalMotion.primary)
+                        InterMotionVector.resolved(nonNullGlobalMotion.primary)
                     else
                         nonNullBlock.motionVector1(),
                     null,

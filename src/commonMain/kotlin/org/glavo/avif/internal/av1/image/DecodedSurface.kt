@@ -164,7 +164,7 @@ class DecodedSurface(
      */
     fun toDecodedPlanes(): Av1DecodedPlanes {
         return Av1DecodedPlanes(
-            AvifBitDepth.Companion.fromBits(bitDepth),
+            AvifBitDepth.fromBits(bitDepth),
             chromaFormat,
             codedWidth,
             codedHeight,

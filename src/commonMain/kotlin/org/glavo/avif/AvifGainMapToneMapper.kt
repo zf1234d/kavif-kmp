@@ -77,7 +77,7 @@ internal object AvifGainMapToneMapper {
     fun requiresGainMap(metadata: AvifGainMapMetadata, hdrHeadroom: Double): Boolean {
             require(!(!hdrHeadroom.isFinite() || hdrHeadroom < 0.0)) { "hdrHeadroom must be a finite non-negative value" }
         val checkedMetadata = requireNotNullCompat(metadata, "metadata")
-        return GainMapMath.Companion.computeWeight(
+        return GainMapMath.computeWeight(
             hdrHeadroom,
             checkedMetadata.baseHdrHeadroom(),
             checkedMetadata.alternateHdrHeadroom()
@@ -501,12 +501,12 @@ internal object AvifGainMapToneMapper {
             this.baseHeight = baseHeight
             this.maxSample = planes.bitDepth().maxSampleValue()
             this.yuvToRgbTransform = if (gainMapColorInfo != null)
-                YuvToRgbTransform.Companion.fromColorInfo(
+                YuvToRgbTransform.fromColorInfo(
                     gainMapColorInfo,
                     planes.chromaFormat() == Av1ChromaFormat.MONOCHROME
                 )
             else
-                YuvToRgbTransform.Companion.BT601_FULL_RANGE
+                YuvToRgbTransform.BT601_FULL_RANGE
         }
 
         /** Returns a normalized gain-map RGB channel for one base pixel coordinate.

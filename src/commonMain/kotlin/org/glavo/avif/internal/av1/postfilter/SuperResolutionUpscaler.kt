@@ -243,7 +243,7 @@ internal object SuperResolutionUpscaler {
             }
         }
 
-        return PaddedPlane.Companion.fromOwnedSamples(
+        return PaddedPlane.fromOwnedSamples(
             targetWidth,
             checkedPlane.height(),
             targetWidth,

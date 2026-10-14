@@ -235,7 +235,7 @@ internal object RestorationApplier {
                     continue
                 }
                 if (destination == null) {
-                    destination = PlaneBuffer.Companion.create(plane, bitDepth)
+                    destination = PlaneBuffer.create(plane, bitDepth)
                 }
                 val horizontalLimits = unitLimits(unitColumn, unitSize, plane.width())
                 applyRestorationUnit(
@@ -1225,7 +1225,7 @@ internal object RestorationApplier {
          * @return one immutable decoded plane from the current samples
          */
         fun toDecodedPlane(): PaddedPlane {
-            return PaddedPlane.Companion.fromOwnedSamples(width, height, stride, samples)
+            return PaddedPlane.fromOwnedSamples(width, height, stride, samples)
         }
 
         companion object {

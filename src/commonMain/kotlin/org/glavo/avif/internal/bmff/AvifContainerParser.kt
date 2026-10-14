@@ -149,7 +149,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
 
         val alphaSource = parseAuxiliarySource(
             primaryItem,
-            AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE,
+            AvifAuxiliaryImageInfo.ALPHA_TYPE,
             "Alpha",
             ispe.width,
             ispe.height
@@ -158,7 +158,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val alphaPremultiplied = itemAlphaPremultiplied(primaryItem)
         val depthSource = parseAuxiliarySource(
             primaryItem,
-            AvifAuxiliaryImageInfo.Companion.DEPTH_TYPE,
+            AvifAuxiliaryImageInfo.DEPTH_TYPE,
             "Depth",
             ispe.width,
             ispe.height
@@ -170,7 +170,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             alphaSource != null
         )
 
-        val primarySource: AvifImageSource = AvifImageSource.Companion.item(
+        val primarySource: AvifImageSource = AvifImageSource.item(
             itemPayload(primaryItem),
             operatingPoint(primaryItem),
             selectedSpatialLayer(primaryItem),
@@ -192,7 +192,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             if (sampleTransform != null)
                 sampleTransform.bitDepth()
             else
-                AvifBitDepth.Companion.fromBits(av1Config.bitDepth()),
+                AvifBitDepth.fromBits(av1Config.bitDepth()),
             av1Config.chromaFormat()
         ).withTransformInfo(transformInfo)
             .withAuxiliaryImages(null, auxiliaryImages(primaryItem.id, ispe.width, ispe.height))
@@ -244,7 +244,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val alphaSource = parseGridAuxiliarySource(
             gridItem,
             colorGrid,
-            AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE,
+            AvifAuxiliaryImageInfo.ALPHA_TYPE,
             "Alpha"
         )
         validateItemPremultipliedAlpha(gridItem, alphaSource, "Primary grid")
@@ -252,7 +252,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val depthSource = parseGridAuxiliarySource(
             gridItem,
             colorGrid,
-            AvifAuxiliaryImageInfo.Companion.DEPTH_TYPE,
+            AvifAuxiliaryImageInfo.DEPTH_TYPE,
             "Depth"
         )
         val sampleTransform = parseSampleTransform(
@@ -280,7 +280,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             if (sampleTransform != null)
                 sampleTransform.bitDepth()
             else
-                AvifBitDepth.Companion.fromBits(colorGrid.representativeAv1C.bitDepth()),
+                AvifBitDepth.fromBits(colorGrid.representativeAv1C.bitDepth()),
             colorGrid.representativeAv1C.chromaFormat()
         ).withTransformInfo(transformInfo)
             .withAuxiliaryImages(
@@ -361,7 +361,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         }
         val outputBitDepth: AvifBitDepth?
         try {
-            outputBitDepth = AvifBitDepth.Companion.fromBits(outputBitCount)
+            outputBitDepth = AvifBitDepth.fromBits(outputBitCount)
         } catch (exception: IllegalArgumentException) {
             throw unsupported(
                 "Unsupported Sample Transform output bit depth: $outputBitCount",
@@ -434,7 +434,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 if (inputConfig == null) {
                     throw parseFailed("Sample Transform AV1 input is missing av1C: $inputId", 0)
                 }
-                colorSource = AvifImageSource.Companion.item(
+                colorSource = AvifImageSource.item(
                     itemPayload(inputItem),
                     operatingPoint(inputItem),
                     selectedSpatialLayer(inputItem),
@@ -443,7 +443,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 )
                 alphaSource = parseAuxiliarySource(
                     inputItem,
-                    AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE,
+                    AvifAuxiliaryImageInfo.ALPHA_TYPE,
                     "Sample Transform alpha",
                     expectedWidth,
                     expectedHeight
@@ -461,7 +461,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 alphaSource = parseGridAuxiliarySource(
                     inputItem,
                     inputGrid,
-                    AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE,
+                    AvifAuxiliaryImageInfo.ALPHA_TYPE,
                     "Sample Transform alpha"
                 )
             } else {
@@ -503,7 +503,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             }
             inputs[inputIndex] = SampleTransform.Input(
                 colorSource,
-                AvifBitDepth.Companion.fromBits(inputConfig.bitDepth()),
+                AvifBitDepth.fromBits(inputConfig.bitDepth()),
                 alphaSource
             )
         }
@@ -719,7 +719,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             outputWidth,
             outputHeight,
             representativeAv1C,
-            AvifImageSource.Companion.grid(
+            AvifImageSource.grid(
                 payloads,
                 cellOperatingPoints,
                 cellSelectedSpatialLayers,
@@ -785,7 +785,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             outputWidth = auxiliaryIspe.width
             outputHeight = auxiliaryIspe.height
         }
-        return AvifImageSource.Companion.item(
+        return AvifImageSource.item(
             itemPayload(auxiliaryItem),
             operatingPoint(auxiliaryItem),
             selectedSpatialLayer(auxiliaryItem),
@@ -851,7 +851,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 outputWidth = auxiliaryIspe.width
                 outputHeight = auxiliaryIspe.height
             }
-            return AvifImageSource.Companion.item(
+            return AvifImageSource.item(
                 itemPayload(auxiliaryItem),
                 operatingPoint(auxiliaryItem),
                 selectedSpatialLayer(auxiliaryItem),
@@ -941,7 +941,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             auxiliaryCellOperatingPoints[i] = operatingPoint(auxiliaryCellItem)
             auxiliaryCellSelectedSpatialLayers[i] = selectedSpatialLayer(auxiliaryCellItem)
         }
-        return AvifImageSource.Companion.grid(
+        return AvifImageSource.grid(
             auxiliaryCellPayloads,
             auxiliaryCellOperatingPoints,
             auxiliaryCellSelectedSpatialLayers,
@@ -1537,7 +1537,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val info = AvifImageInfo(
             s.width,
             s.height,
-            AvifBitDepth.Companion.fromBits(s.bitDepth),
+            AvifBitDepth.fromBits(s.bitDepth),
             checkNotNull(s.chromaFormat)
         ).withSequenceInfo(
             AvifSequenceInfo(
@@ -1714,7 +1714,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 offset
             )
         }
-        return AvifPayload.Companion.ofRanges(source, longArrayOf(offset), intArrayOf(size))
+        return AvifPayload.ofRanges(source, longArrayOf(offset), intArrayOf(size))
     }
 
     /** Extracts auxiliary sample payloads and validates the sample count.
@@ -1796,16 +1796,16 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             ) {
                 continue
             }
-            if (AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE == candidate.auxiliaryType) {
+            if (AvifAuxiliaryImageInfo.ALPHA_TYPE == candidate.auxiliaryType) {
                 validateMoovAlphaTrackGeometry(candidate, meta.moovState)
             }
             if (!meta.moovAuxiliaryTypes.contains(candidate.auxiliaryType)) {
                 meta.moovAuxiliaryTypes.add(candidate.auxiliaryType!!)
             }
-            if (AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE == candidate.auxiliaryType && meta.moovAlphaState == null) {
+            if (AvifAuxiliaryImageInfo.ALPHA_TYPE == candidate.auxiliaryType && meta.moovAlphaState == null) {
                 meta.moovAlphaState = candidate
             }
-            if (AvifAuxiliaryImageInfo.Companion.DEPTH_TYPE == candidate.auxiliaryType && meta.moovDepthState == null) {
+            if (AvifAuxiliaryImageInfo.DEPTH_TYPE == candidate.auxiliaryType && meta.moovDepthState == null) {
                 meta.moovDepthState = candidate
             }
         }
@@ -2499,7 +2499,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
      */
     private fun itemAlphaPremultiplied(imageItem: Item): Boolean {
         val auxiliaryItem =
-            findAuxiliaryItem(imageItem.id, AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE)
+            findAuxiliaryItem(imageItem.id, AvifAuxiliaryImageInfo.ALPHA_TYPE)
         return auxiliaryItem != null && imageItem.premultipliedById == auxiliaryItem.id
     }
 
@@ -2523,7 +2523,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             referencedItem.firstProperty<AuxiliaryType>(AuxiliaryType::class)
         else
             null
-        if (alphaSource == null || auxiliaryType == null || (AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE != auxiliaryType.type)) {
+        if (alphaSource == null || auxiliaryType == null || (AvifAuxiliaryImageInfo.ALPHA_TYPE != auxiliaryType.type)) {
             throw parseFailed(
                 (label + " prem reference does not target a usable alpha auxiliary image: "
                         + imageItem.premultipliedById)
@@ -2565,7 +2565,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
      */
     private fun gainMapPayloads(baseItemId: Int): GainMapPayloads {
         if (!tmapBrandSeen) {
-            return GainMapPayloads.Companion.empty()
+            return GainMapPayloads.empty()
         }
         for (item in meta.items.values) {
             if ("tmap" != item.type || item.hasUnsupportedEssentialProperty) {
@@ -2584,29 +2584,29 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             }
             val gainMapItem = meta.item(gainMapItemId)
             if (gainMapItem == null || gainMapItem.hasUnsupportedEssentialProperty) {
-                return GainMapPayloads.Companion.empty()
+                return GainMapPayloads.empty()
             }
             validateOperatingPointStructure(gainMapItem, "Gain-map image")
 
             val toneMapMetadata = toneMapMetadata(item)
             if (toneMapMetadata == null) {
-                return GainMapPayloads.Companion.empty()
+                return GainMapPayloads.empty()
             }
             val toneMappedDimensions: ItemDimensions = itemDimensions(item)
 
             if ("grid" == gainMapItem.type) {
                 val grid = parseGridPayloads(gainMapItem)
-                val info: AvifGainMapInfo = Companion.gainMapInfo(
+                val info: AvifGainMapInfo = gainMapInfo(
                     item,
                     baseItemId,
                     gainMapItem,
                     toneMappedDimensions,
                     ItemDimensions(grid.outputWidth, grid.outputHeight),
-                    AvifBitDepth.Companion.fromBits(grid.representativeAv1C.bitDepth()),
+                    AvifBitDepth.fromBits(grid.representativeAv1C.bitDepth()),
                     grid.representativeAv1C.chromaFormat(),
                     toneMapMetadata
                 )
-                return GainMapPayloads.Companion.grid(info, grid)
+                return GainMapPayloads.grid(info, grid)
             }
 
             val gainMapDimensions: ItemDimensions = itemDimensions(gainMapItem)
@@ -2615,7 +2615,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             else
                 null
             val gainMapBitDepth: AvifBitDepth? = if (gainMapAv1Config != null)
-                AvifBitDepth.Companion.fromBits(gainMapAv1Config.bitDepth())
+                AvifBitDepth.fromBits(gainMapAv1Config.bitDepth())
             else
                 null
             val gainMapChromaFormat = if (gainMapAv1Config != null)
@@ -2633,9 +2633,9 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 toneMapMetadata
             )
             if ("av01" == gainMapItem.type) {
-                return GainMapPayloads.Companion.item(
+                return GainMapPayloads.item(
                     info,
-                    AvifImageSource.Companion.item(
+                    AvifImageSource.item(
                         itemPayload(gainMapItem),
                         operatingPoint(gainMapItem),
                         selectedSpatialLayer(gainMapItem),
@@ -2644,9 +2644,9 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                     )
                 )
             }
-            return GainMapPayloads.Companion.descriptorOnly(info)
+            return GainMapPayloads.descriptorOnly(info)
         }
-        return GainMapPayloads.Companion.empty()
+        return GainMapPayloads.empty()
     }
 
     /** Parses the tone-map metadata payload from one `tmap` item.
@@ -2800,7 +2800,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 throw unsupported("Item payload exceeds supported size: " + item.id, null)
             }
         }
-        return AvifPayload.Companion.ofRanges(source, offsets, lengths)
+        return AvifPayload.ofRanges(source, offsets, lengths)
     }
 
     /** Merges item extents into one contiguous payload.
@@ -3610,7 +3610,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          */
         fun parse(source: ByteArray): AvifContainer {
             return parse(
-                AvifDataSource.Companion.ofBytes(
+                AvifDataSource.ofBytes(
                     requireNotNullCompat(
                         source,
                         "source"
@@ -3759,7 +3759,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          * @return whether the type describes an alpha auxiliary image
          */
         fun isAlphaAuxiliaryType(auxiliaryType: String): Boolean {
-            return AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE == auxiliaryType
+            return AvifAuxiliaryImageInfo.ALPHA_TYPE == auxiliaryType
         }
 
         /** Validates explicitly associated transform properties against a master image item.
@@ -4028,7 +4028,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          */
         fun operatingPoint(item: Item): Int {
             val operatingPoint: OperatingPoint? =
-                Companion.uniqueProperty<OperatingPoint>(item, OperatingPoint::class, "a1op")
+                uniqueProperty<OperatingPoint>(item, OperatingPoint::class, "a1op")
             return if (operatingPoint != null) operatingPoint.operatingPoint else 0
         }
 
@@ -4043,9 +4043,9 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          */
         fun selectedSpatialLayer(item: Item): Int {
             val layerSelector: LayerSelector? =
-                Companion.uniqueProperty<LayerSelector>(item, LayerSelector::class, "lsel")
+                uniqueProperty<LayerSelector>(item, LayerSelector::class, "lsel")
             return if (layerSelector == null || layerSelector.layerId == 0xFFFF)
-                AvifImageSource.Companion.HIGHEST_SPATIAL_LAYER
+                AvifImageSource.HIGHEST_SPATIAL_LAYER
             else
                 layerSelector.layerId
         }
@@ -4344,13 +4344,13 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          */
         fun sequenceRepetitionCount(track: MoovState): Int {
             if (!track.editListSeen) {
-                return AvifSequenceInfo.Companion.REPETITION_COUNT_UNKNOWN
+                return AvifSequenceInfo.REPETITION_COUNT_UNKNOWN
             }
             if (!track.editListRepeating) {
                 return 0
             }
             if (track.trackDuration == INDEFINITE_TRACK_DURATION) {
-                return AvifSequenceInfo.Companion.REPETITION_COUNT_INFINITE
+                return AvifSequenceInfo.REPETITION_COUNT_INFINITE
             }
             if (track.trackDuration == 0L) {
                 throw AvifDecodeException(
@@ -4364,7 +4364,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                     + (if (track.trackDuration % segmentDuration != 0L) 1 else 0)
                     - 1)
             return if (repetitionCount > Int.MAX_VALUE)
-                AvifSequenceInfo.Companion.REPETITION_COUNT_INFINITE
+                AvifSequenceInfo.REPETITION_COUNT_INFINITE
             else repetitionCount.toInt()
         }
 
@@ -4418,7 +4418,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          */
         fun inferLegacyMoovAuxiliaryType(track: MoovState) {
             if (track.auxiliaryType == null && !track.auxiliaryForTrackIds.isEmpty() && track.chromaFormat == Av1ChromaFormat.MONOCHROME) {
-                track.auxiliaryType = AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE
+                track.auxiliaryType = AvifAuxiliaryImageInfo.ALPHA_TYPE
             }
         }
 
@@ -4504,10 +4504,10 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
          * @return the diagnostic label
          */
         fun moovAuxiliaryLabel(auxiliaryTrack: MoovState): String {
-            if (AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE == auxiliaryTrack.auxiliaryType) {
+            if (AvifAuxiliaryImageInfo.ALPHA_TYPE == auxiliaryTrack.auxiliaryType) {
                 return "Alpha"
             }
-            if (AvifAuxiliaryImageInfo.Companion.DEPTH_TYPE == auxiliaryTrack.auxiliaryType) {
+            if (AvifAuxiliaryImageInfo.DEPTH_TYPE == auxiliaryTrack.auxiliaryType) {
                 return "Depth"
             }
             return "Auxiliary"
@@ -4718,13 +4718,13 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
                 item.firstProperty<ImageSpatialExtents>(ImageSpatialExtents::class)
             val av1Config: Av1Config? = item.firstProperty<Av1Config>(Av1Config::class)
             val alphaWithoutIspe =
-                ispe == null && AvifAuxiliaryImageInfo.Companion.ALPHA_TYPE == auxiliaryType.type
+                ispe == null && AvifAuxiliaryImageInfo.ALPHA_TYPE == auxiliaryType.type
             val width =
                 if (ispe != null) ispe.width else (if (alphaWithoutIspe) fallbackWidth else -1)
             val height =
                 if (ispe != null) ispe.height else (if (alphaWithoutIspe) fallbackHeight else -1)
             val bitDepth: AvifBitDepth? =
-                if (av1Config != null) AvifBitDepth.Companion.fromBits(av1Config.bitDepth()) else null
+                if (av1Config != null) AvifBitDepth.fromBits(av1Config.bitDepth()) else null
             val chromaFormat = if (av1Config != null) av1Config.chromaFormat() else null
             return AvifAuxiliaryImageInfo(
                 item.id,
@@ -4904,7 +4904,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             return if (ispe != null) ItemDimensions(
                 ispe.width,
                 ispe.height
-            ) else ItemDimensions.Companion.UNKNOWN
+            ) else ItemDimensions.UNKNOWN
         }
 
         /** Reads one full-box header.

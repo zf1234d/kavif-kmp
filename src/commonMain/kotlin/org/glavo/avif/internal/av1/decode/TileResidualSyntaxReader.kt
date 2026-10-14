@@ -144,7 +144,7 @@ class TileResidualSyntaxReader constructor(
             }
             offsetY4 += 16
         }
-        return ResidualLayout.Companion.fromOwnedUnits(
+        return ResidualLayout.fromOwnedUnits(
             nonNullTransformLayout.position(),
             nonNullTransformLayout.blockSize(),
             residualUnits,
@@ -587,7 +587,7 @@ class TileResidualSyntaxReader constructor(
             cumulativeLevel += token
         }
 
-        return TransformResidualUnit.Companion.fromOwnedCoefficients(
+        return TransformResidualUnit.fromOwnedCoefficients(
             nonNullPosition,
             TransformSize.TX_4X4,
             nonNullTransformType,
@@ -742,7 +742,7 @@ class TileResidualSyntaxReader constructor(
             cumulativeLevel += token
         }
 
-        return TransformResidualUnit.Companion.fromOwnedCoefficients(
+        return TransformResidualUnit.fromOwnedCoefficients(
             nonNullPosition,
             nonNullTransformSize,
             nonNullTransformType,
@@ -788,7 +788,7 @@ class TileResidualSyntaxReader constructor(
             }
             signedDcCoefficient = if (negative) -magnitude else magnitude
         }
-        return TransformResidualUnit.Companion.dcOnly(
+        return TransformResidualUnit.dcOnly(
             position,
             transformSize,
             transformType,
@@ -928,7 +928,7 @@ class TileResidualSyntaxReader constructor(
             return TransformType.DCT_DCT
         }
         if (intraTransform) {
-            return Companion.uvIntraTransformType(nonNullHeader.uvMode())
+            return uvIntraTransformType(nonNullHeader.uvMode())
         }
         return chromaInterTransformType(nonNullTransformSize, nonNullLumaTransformType)
     }
@@ -1146,7 +1146,7 @@ class TileResidualSyntaxReader constructor(
             val nonNullPosition = requireNotNullCompat(position, "position")
             val nonNullTransformSize =
                 requireNotNullCompat(transformSize, "transformSize")
-            return TransformResidualUnit.Companion.allZero(
+            return TransformResidualUnit.allZero(
                 nonNullPosition,
                 nonNullTransformSize,
                 visibleWidthPixels,

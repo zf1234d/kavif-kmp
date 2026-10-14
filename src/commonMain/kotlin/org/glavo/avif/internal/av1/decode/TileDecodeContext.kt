@@ -635,7 +635,7 @@ class TileDecodeContext private constructor(
             return create(
                 nonNullAssembly,
                 tileIndex,
-                CdfContext.Companion.createDefault(
+                CdfContext.createDefault(
                     nonNullAssembly.frameHeader().quantization().baseQIndex()
                 )
             )
@@ -658,11 +658,11 @@ class TileDecodeContext private constructor(
                 nonNullAssembly,
                 tileIndex,
                 baseCdfContext,
-                ReferenceMotionVectorProjection.Companion.create(
+                ReferenceMotionVectorProjection.create(
                     nonNullAssembly,
                     arrayOfNullsCompat<ReferenceFrameSyntaxState?>(8)
                 ),
-                SegmentIdMap.Companion.create(nonNullAssembly),
+                SegmentIdMap.create(nonNullAssembly),
                 null
             )
         }
@@ -803,7 +803,7 @@ class TileDecodeContext private constructor(
                 nonNullCurrentSegmentIdMap,
                 referenceSegmentIdMap,
                 BlockSyntaxState(frameHeader.quantization().baseQIndex()),
-                RestorationUnitMap.Companion.createEmpty(nonNullAssembly),
+                RestorationUnitMap.createEmpty(nonNullAssembly),
                 tileIndex,
                 tileRow,
                 tileColumn,

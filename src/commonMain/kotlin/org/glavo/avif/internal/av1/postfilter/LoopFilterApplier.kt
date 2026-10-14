@@ -118,7 +118,7 @@ object LoopFilterApplier {
         val checkedFrameHeader = requireNotNullCompat(frameHeader, "frameHeader")
         val loopFilter = checkedFrameHeader.loopFilter()
         if (!hasActiveLevels(loopFilter, checkedDecodedPlanes.hasChroma())) {
-            return PreparedApplication.Companion.inactive(checkedDecodedPlanes)
+            return PreparedApplication.inactive(checkedDecodedPlanes)
         }
         checkNotNull(syntaxDecodeResult) { "Active AV1 loop filtering requires decoded block edge state" }
 
@@ -136,7 +136,7 @@ object LoopFilterApplier {
             checkedDecodedPlanes,
             loopFilter.sharpness(),
             activePlaneMask,
-            LoopFilterBlockMap.Companion.create(
+            LoopFilterBlockMap.create(
                 syntaxDecodeResult,
                 checkedDecodedPlanes,
                 checkedFrameHeader
@@ -239,7 +239,7 @@ object LoopFilterApplier {
         sharpness: Int,
         planeIndex: Int
     ): PaddedPlane {
-        val destination: PlaneBuffer = PlaneBuffer.Companion.create(plane, bitDepth)
+        val destination: PlaneBuffer = PlaneBuffer.create(plane, bitDepth)
         val subX = if (planeIndex == 0) 0 else chromaSubsamplingX(chromaFormat)
         val subY = if (planeIndex == 0) 0 else chromaSubsamplingY(chromaFormat)
         destination.setProcessingExtent(
@@ -1242,7 +1242,7 @@ object LoopFilterApplier {
          * @return one immutable decoded-plane snapshot from the current samples
          */
         fun toDecodedPlane(): PaddedPlane {
-            return PaddedPlane.Companion.fromOwnedSamples(width, height, stride, samples)
+            return PaddedPlane.fromOwnedSamples(width, height, stride, samples)
         }
 
         companion object {

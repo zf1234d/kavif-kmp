@@ -215,7 +215,7 @@ class TileSyntaxReader constructor(
     fun readCompoundInterMode(context: Int): CompoundInterPredictionMode {
         val symbol =
             msacDecoder.decodeSymbolAdapt(cdfContext.mutableCompoundInterModeCdf(context), 7)
-        return CompoundInterPredictionMode.Companion.fromSymbolIndex(symbol)
+        return CompoundInterPredictionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one block motion mode from the supplied block-size context index.
@@ -225,7 +225,7 @@ class TileSyntaxReader constructor(
      */
     fun readMotionMode(context: Int): MotionMode {
         val symbol = msacDecoder.decodeSymbolAdapt(cdfContext.mutableMotionModeCdf(context), 2)
-        return MotionMode.Companion.fromSymbolIndex(symbol)
+        return MotionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one OBMC enable flag from the supplied block-size context index.
@@ -288,7 +288,7 @@ class TileSyntaxReader constructor(
      */
     fun readInterIntraMode(context: Int): InterIntraPredictionMode {
         val symbol = msacDecoder.decodeSymbolAdapt(cdfContext.mutableInterIntraModeCdf(context), 3)
-        return InterIntraPredictionMode.Companion.fromSymbolIndex(symbol)
+        return InterIntraPredictionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one inter-intra wedge enable flag from the supplied context index.
@@ -825,7 +825,7 @@ class TileSyntaxReader constructor(
      */
     fun readYMode(sizeContext: Int): LumaIntraPredictionMode {
         val symbol = msacDecoder.decodeSymbolAdapt(cdfContext.mutableYModeCdf(sizeContext), 12)
-        return LumaIntraPredictionMode.Companion.fromSymbolIndex(symbol)
+        return LumaIntraPredictionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one key-frame Y intra prediction mode using the supplied above and left luma modes.
@@ -848,7 +848,7 @@ class TileSyntaxReader constructor(
             ),
             12
         )
-        return LumaIntraPredictionMode.Companion.fromSymbolIndex(symbol)
+        return LumaIntraPredictionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one UV intra prediction mode using the supplied Y mode and CFL availability.
@@ -863,7 +863,7 @@ class TileSyntaxReader constructor(
             cdfContext.mutableUvModeCdf(cflAllowed, nonNullYMode.symbolIndex()),
             if (cflAllowed) 13 else 12
         )
-        return UvIntraPredictionMode.Companion.fromSymbolIndex(symbol)
+        return UvIntraPredictionMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one `use_filter_intra` flag for the supplied block size.
@@ -965,7 +965,7 @@ class TileSyntaxReader constructor(
      */
     fun readFilterIntraMode(): FilterIntraMode {
         val symbol = msacDecoder.decodeSymbolAdapt(cdfContext.mutableFilterIntraCdf(), 4)
-        return FilterIntraMode.Companion.fromSymbolIndex(symbol)
+        return FilterIntraMode.fromSymbolIndex(symbol)
     }
 
     /** Decodes one partition symbol using the supplied partition block level and context index.
@@ -982,7 +982,7 @@ class TileSyntaxReader constructor(
             cdf,
             nonNullBlockLevel.symbolLimit()
         )
-        return PartitionType.Companion.fromSymbolIndex(symbol)
+        return PartitionType.fromSymbolIndex(symbol)
     }
 
     /** Decodes one directional angle delta for the supplied luma intra prediction mode.

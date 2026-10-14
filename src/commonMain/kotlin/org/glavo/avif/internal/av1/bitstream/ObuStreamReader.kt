@@ -226,7 +226,7 @@ class ObuStreamReader private constructor(
             throw invalidHeader("OBU reserved bit must be zero", obuOffset, currentObuIndex)
         }
 
-        val type: ObuType? = ObuType.Companion.fromId(typeId)
+        val type: ObuType? = ObuType.fromId(typeId)
         if (type == null) {
             throw invalidHeader("Unsupported OBU type: $typeId", obuOffset, currentObuIndex)
         }

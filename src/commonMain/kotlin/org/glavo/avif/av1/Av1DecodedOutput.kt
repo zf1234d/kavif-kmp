@@ -136,7 +136,7 @@ class Av1DecodedOutput internal constructor(
         var result = frame
         if (result == null) {
             val transform: YuvToRgbTransform =
-                YuvToRgbTransform.Companion.fromColorConfig(colorConfig)
+                YuvToRgbTransform.fromColorConfig(colorConfig)
             result = when (surface.bitDepth()) {
                 8 -> Av1DecodedFrame(
                     surface.codedWidth(),
@@ -154,7 +154,7 @@ class Av1DecodedOutput internal constructor(
                 10, 12 -> Av1DecodedFrame(
                     surface.codedWidth(),
                     surface.codedHeight(),
-                    AvifBitDepth.Companion.fromBits(surface.bitDepth()),
+                    AvifBitDepth.fromBits(surface.bitDepth()),
                     surface.chromaFormat(),
                     frameType,
                     visible,

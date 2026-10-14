@@ -55,7 +55,7 @@ class FrameSyntaxDecodeResult private constructor(
         assembly,
         tileRoots,
         decodedTemporalMotionFields,
-        RestorationUnitMap.Companion.createEmpty(
+        RestorationUnitMap.createEmpty(
             requireNotNullCompat(
                 assembly,
                 "assembly"
@@ -84,7 +84,7 @@ class FrameSyntaxDecodeResult private constructor(
         assembly: FrameAssembly,
         tileRoots: Array<Array<TilePartitionTreeReader.Node>>,
         decodedTemporalMotionFields: Array<TemporalMotionField>,
-        restorationUnitMap: RestorationUnitMap = RestorationUnitMap.Companion.createEmpty(
+        restorationUnitMap: RestorationUnitMap = RestorationUnitMap.createEmpty(
             requireNotNullCompat(
                 assembly,
                 "assembly"
@@ -102,7 +102,7 @@ class FrameSyntaxDecodeResult private constructor(
         decodedTemporalMotionFields,
         restorationUnitMap,
         finalTileCdfContexts,
-        SegmentIdMap.Companion.fromDecodedBlocks(assembly, tileRoots)
+        SegmentIdMap.fromDecodedBlocks(assembly, tileRoots)
     )
 
     /** Creates one structural frame-decode result with an exact segment-id map.

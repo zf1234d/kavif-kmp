@@ -93,7 +93,7 @@ object CdefApplier {
         val yStrengths = checkedCdef.yStrengths()
         val uvStrengths = checkedCdef.uvStrengths()
         if (!hasActiveStrengths(yStrengths, uvStrengths, checkedDecodedPlanes.hasChroma())) {
-            return PreparedApplication.Companion.inactive(checkedDecodedPlanes)
+            return PreparedApplication.inactive(checkedDecodedPlanes)
         }
         checkNotNull(syntaxDecodeResult) { "Active AV1 CDEF filtering requires decoded block CDEF indices" }
 
@@ -530,7 +530,7 @@ object CdefApplier {
             }
         }
         return if (outputSamples != null)
-            PaddedPlane.Companion.fromOwnedSamples(
+            PaddedPlane.fromOwnedSamples(
                 plane.width(),
                 plane.height(),
                 plane.stride(),

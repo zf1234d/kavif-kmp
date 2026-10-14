@@ -71,7 +71,7 @@ data class Av1ColorConfig(
         chromaSubsamplingY: Boolean,
         separateUvDeltaQ: Boolean
     ) : this(
-        AvifBitDepth.Companion.fromBits(bitDepth),
+        AvifBitDepth.fromBits(bitDepth),
         monochrome,
         colorDescriptionPresent,
         colorPrimaries,
