@@ -13,11 +13,6 @@ open class AvifIoException : Exception {
 
 class EOFException(message: String = "Unexpected end of input") : AvifIoException(message)
 
-object Charsets {
-    const val ISO_8859_1: String = "ISO-8859-1"
-    const val UTF_8: String = "UTF-8"
-}
-
 class ByteArrayOutput(capacity: Int = 32) {
     private var buffer: ByteArray = ByteArray(maxOf(32, capacity))
     private var count: Int = 0
@@ -35,14 +30,9 @@ class ByteArrayOutput(capacity: Int = 32) {
 
     fun toByteArray(): ByteArray = buffer.copyOf(count)
 
-    fun toString(charset: String): String {
-        val bytes = toByteArray()
-        return if (charset == Charsets.ISO_8859_1) {
-            bytes.decodeToIso88591()
-        } else {
-            bytes.decodeToString()
-        }
-    }
+    fun toIso88591String(): String = toByteArray().decodeToIso88591()
+
+    fun toUtf8String(): String = toByteArray().decodeToString()
 
     fun size(): Int = count
 

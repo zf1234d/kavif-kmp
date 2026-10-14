@@ -1493,7 +1493,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             }
             output.write(value)
         }
-        return AuxiliaryType(output.toString(Charsets.ISO_8859_1))
+        return AuxiliaryType(output.toIso88591String())
     }
 
     /** Creates an AVIF container from parsed sequence data. */
@@ -5093,7 +5093,7 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             while (input.hasRemaining()) {
                 val value = input.readU8()
                 if (value == 0) {
-                    return output.toString(Charsets.UTF_8)
+                    return output.toUtf8String()
                 }
                 output.write(value)
             }
