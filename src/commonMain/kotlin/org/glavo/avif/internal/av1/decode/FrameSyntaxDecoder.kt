@@ -36,12 +36,6 @@ class FrameSyntaxDecoder constructor(
         arrayOfNullsCompat<ReferenceFrameSyntaxState?>(8)
     )
 
-    /** Creates one structural frame decoder with runtime references and strict conformance policy.
-     * 
-     * @param referenceCdfFrameSyntaxState the optional compact reference state that provides the inherited frame CDF context
-     * @param referenceFrameSyntaxStates compact syntax states indexed by runtime reference slot
-     * @param strictStdCompliance whether decoded conformance values outside their ranges must be rejected
-     */
     init {
         val nonNullReferenceFrameSyntaxStates =
             requireNotNullCompat(

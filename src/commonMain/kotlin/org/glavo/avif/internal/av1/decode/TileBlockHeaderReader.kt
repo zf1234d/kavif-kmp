@@ -47,11 +47,6 @@ class TileBlockHeaderReader constructor(
     /** Whether decoded conformance values outside their specified ranges must be rejected. */
     private val strictStdCompliance: Boolean
 
-    /** Creates one leaf block header reader with a strict conformance policy.
-     * 
-     * @param tileContext the tile-local decode state that owns the active frame and sequence headers
-     * @param strictStdCompliance whether decoded conformance values outside their ranges must be rejected
-     */
     init {
         val nonNullTileContext =
             requireNotNullCompat(tileContext, "tileContext")
@@ -3082,7 +3077,6 @@ class TileBlockHeaderReader constructor(
         val maskSign: Boolean,
         val wedgeIndex: Int
     ) {
-        /** Validates one decoded compound prediction selection. */
         init {
             requireNotNullCompat(type, "type")
         }
@@ -3103,7 +3097,6 @@ class TileBlockHeaderReader constructor(
         val motionVector0: InterMotionVector,
         val motionVector1: InterMotionVector?
     ) {
-        /** Validates one decoded inter prediction-mode selection. */
         init {
             requireNotNullCompat(motionVector0, "motionVector0")
         }

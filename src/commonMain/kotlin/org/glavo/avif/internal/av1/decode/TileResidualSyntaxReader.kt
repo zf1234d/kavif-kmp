@@ -26,7 +26,10 @@ import org.glavo.avif.internal.av1.model.UvIntraPredictionMode
  * contexts remain tile-local as required by AV1 tile entropy independence.
  * `TX_4X4` keeps its dedicated context helpers, while larger transform sizes use the same
  * coefficient-neighbor token contexts so multi-coefficient blocks do not fall back to fixed
- * probabilities once AC residuals are present. */
+ * probabilities once AC residuals are present.
+ * 
+ * @param strictStdCompliance whether malformed coefficient syntax must be rejected
+ */
 class TileResidualSyntaxReader constructor(
     tileContext: TileDecodeContext,
     strictStdCompliance: Boolean = false
@@ -46,11 +49,6 @@ class TileResidualSyntaxReader constructor(
     /** Reusable zero-filled coefficient-level context grid for the current residual unit. */
     private val coefficientLevelGrid = CoefficientLevelGrid()
 
-    /** Creates one tile-local residual syntax reader with a strict conformance policy.
-     * 
-     * @param tileContext the tile-local decode state that owns the active tile bitstream
-     * @param strictStdCompliance whether malformed coefficient syntax must be rejected
-     */
     init {
         this.tileContext = requireNotNullCompat(tileContext, "tileContext")
         this.syntaxReader = TileSyntaxReader(this.tileContext, strictStdCompliance)

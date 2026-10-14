@@ -22,7 +22,6 @@ data class ObuHeader(
     val temporalId: Int,
     val spatialId: Int
 ) {
-    /** Creates a parsed OBU header. */
     init {
         require(temporalId in 0..7) { "temporalId out of range: $temporalId" }
         require(spatialId in 0..3) { "spatialId out of range: $spatialId" }

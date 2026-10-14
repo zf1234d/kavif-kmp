@@ -1127,7 +1127,6 @@ object CdefApplier {
             return nonSkipUnits[unitIndex]
         }
 
-        /** Creates one row-major decoded CDEF syntax map. */
         init {
             requireNotNullCompat(
                 cdefIndices, "cdefIndices"
@@ -1167,7 +1166,6 @@ object CdefApplier {
             return variances[unitIndex]
         }
 
-        /** Creates one row-major luma-derived CDEF direction map. */
         init {
             requireNotNullCompat(
                 directions, "directions"

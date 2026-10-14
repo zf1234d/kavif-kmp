@@ -45,11 +45,6 @@ class TileSyntaxReader constructor(
     /** The tile-local mutable CDF context. */
     private val cdfContext: CdfContext
 
-    /** Creates a typed syntax reader with a strict conformance policy.
-     * 
-     * @param tileContext the tile-local decode context that owns the mutable decoder and CDF context
-     * @param strictStdCompliance whether malformed syntax outside conformance limits must be rejected
-     */
     init {
         this.tileContext = requireNotNullCompat(tileContext, "tileContext")
         this.msacDecoder = tileContext.msacDecoder()

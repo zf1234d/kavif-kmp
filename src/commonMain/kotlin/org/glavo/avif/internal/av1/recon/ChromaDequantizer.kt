@@ -327,15 +327,6 @@ internal object ChromaDequantizer {
         val useQuantizationMatrices: Boolean = false,
         val quantizationMatrix: Int = 0
     ) {
-        /** Creates one chroma dequantization context.
-         * 
-         * @param qIndex the block-local chroma AC quantizer index in `[0, 255]`
-         * @param dcDelta the plane-local DC delta quantizer
-         * @param acDelta the plane-local AC delta quantizer
-         * @param bitDepth the decoded sample bit depth
-         * @param useQuantizationMatrices whether frame-level quantization matrices are enabled
-         * @param quantizationMatrix the chroma quantization matrix index in `[0, 15]`
-         */
         init {
             require(qIndex in 0..255) { "qIndex out of range: $qIndex" }
             require(bitDepth > 0) { "bitDepth <= 0: $bitDepth" }

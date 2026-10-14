@@ -27,7 +27,6 @@ class TileList(val outputTileColumns: Int, val outputTileRows: Int, entries: Mut
         val tileColumn: Int,
         val bitstream: TileBitstream
     ) {
-        /** Creates one validated tile-list entry. */
         init {
             require(!(anchorFrameIndex < 0 || anchorFrameIndex >= 128)) { "anchorFrameIndex out of range: $anchorFrameIndex" }
             require(!(tileRow < 0 || tileRow >= 64)) { "tileRow out of range: $tileRow" }
@@ -38,7 +37,6 @@ class TileList(val outputTileColumns: Int, val outputTileRows: Int, entries: Mut
 
     val entries: MutableList<Entry>
 
-    /** Creates a validated immutable tile list. */
     init {
         var entries = entries
         require(!(outputTileColumns <= 0 || outputTileColumns > 256)) { "outputTileColumns out of range: $outputTileColumns" }

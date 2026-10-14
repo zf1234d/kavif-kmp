@@ -18,7 +18,10 @@ import org.glavo.avif.internal.av1.model.TransformLayout
 /** Recursively decodes one tile bitstream into a frame-relative AV1 partition tree.
  * 
  * Entropy and neighbor-context operations use tile-relative coordinates while decoding. Nodes retained
- * in the returned tree use frame-relative coordinates so reconstruction does not need a second tree. */
+ * in the returned tree use frame-relative coordinates so reconstruction does not need a second tree.
+ * 
+ * @param strictStdCompliance whether decoded conformance values outside their ranges must be rejected
+ */
 class TilePartitionTreeReader constructor(
     tileContext: TileDecodeContext,
     strictStdCompliance: Boolean = false
@@ -56,11 +59,6 @@ class TilePartitionTreeReader constructor(
     /** The frame-relative Y origin of the tile in AV1 4x4 coding units. */
     private val frameOffsetY4: Int
 
-    /** Creates one recursive tile partition tree reader with a strict conformance policy.
-     * 
-     * @param tileContext the tile-local decode state that owns the active tile bitstream
-     * @param strictStdCompliance whether decoded conformance values outside their ranges must be rejected
-     */
     init {
         val nonNullTileContext =
             requireNotNullCompat(tileContext, "tileContext")
@@ -636,7 +634,6 @@ class TilePartitionTreeReader constructor(
             return header.size()
         }
 
-        /** Creates one partition tree leaf. */
         init {
             requireNotNullCompat(header, "header")
             requireNotNullCompat(transformLayout, "transformLayout")

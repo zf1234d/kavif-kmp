@@ -2922,7 +2922,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val frameDeltas: IntArray,
         val sampleCount: Int
     ) {
-        /** Creates extracted AVIS sample payloads for one track. */
         init {
             requireNotNullCompat(
                 payloads, "payloads"
@@ -2953,7 +2952,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val writerVersion: Int,
         val metadata: AvifGainMapMetadata
     ) {
-        /** Creates parsed `tmap` metadata. */
         init {
             requireNotNullCompat(metadata, "metadata")
         }
@@ -2970,7 +2968,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val groupId: Int,
         val entityIds: IntArray
     ) {
-        /** Creates a parsed BMFF entity group. */
         init {
             requireNotNullCompat(type, "type")
             requireNotNullCompat(
@@ -3126,7 +3123,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
         val representativeAv1C: Av1Config,
         val source: AvifImageSource
     ) {
-        /** Creates parsed grid payloads and geometry. */
         init {
             requireNotNullCompat(representativeAv1C, "representativeAv1C")
             requireNotNullCompat(source, "source")
@@ -3435,7 +3431,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
      * @param colorInfo the parsed color information
      */
     data class ColorProperty(val colorInfo: AvifColorInfo) : Property {
-        /** Creates a color property. */
         init {
             requireNotNullCompat(colorInfo, "colorInfo")
         }
@@ -3446,7 +3441,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
      * @param profile the ICC profile payload
      */
     data class IccColorProfile(val profile: ByteArray) : Property {
-        /** Creates an ICC color profile property. */
         init {
             requireNotNullCompat(
                 profile, "profile"
@@ -3459,7 +3453,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
      * @param type the auxiliary image type string
      */
     data class AuxiliaryType(val type: String) : Property {
-        /** Creates an auxiliary type property. */
         init {
             requireNotNullCompat(type, "type")
         }
@@ -3484,7 +3477,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
             return AvifOpaqueItemProperty(type, userType, payload)
         }
 
-        /** Creates an opaque property. */
         init {
             requireNotNullCompat(type, "type")
             requireNotNullCompat(
@@ -3500,7 +3492,6 @@ class AvifContainerParser private constructor(source: AvifDataSource, metadataSi
     class PixelInformation(bitsPerChannel: IntArray) : Property {
         val bitsPerChannel: IntArray
 
-        /** Creates a pixel information property with an independent channel-depth array. */
         init {
             var bitsPerChannel = bitsPerChannel
             bitsPerChannel =

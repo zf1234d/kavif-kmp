@@ -28,12 +28,6 @@ class BitReader constructor(
     /** The next unread bit offset from the start of the payload. */
     private var bitOffset = 0
 
-    /** Creates a bit reader for a byte slice inside the supplied payload array.
-     * 
-     * @param data the payload bytes
-     * @param startByteOffset the first readable byte offset inside `data`
-     * @param byteLength the readable byte length inside `data`
-     */
     init {
         this.data = requireNotNullCompat(data, "data")
         require(startByteOffset in 0..data.size) { "startByteOffset out of range: $startByteOffset" }

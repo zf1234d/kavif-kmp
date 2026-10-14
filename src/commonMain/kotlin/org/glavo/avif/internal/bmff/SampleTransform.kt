@@ -449,7 +449,6 @@ class SampleTransform(
         val colorBitDepth: AvifBitDepth,
         val alphaSource: AvifImageSource?
     ) {
-        /** Creates an ordered Sample Transform input. */
         init {
             requireNotNullCompat(colorSource, "colorSource")
             requireNotNullCompat(colorBitDepth, "colorBitDepth")

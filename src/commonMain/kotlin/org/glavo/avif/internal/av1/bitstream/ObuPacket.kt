@@ -20,7 +20,6 @@ data class ObuPacket(
     val streamOffset: Long,
     val obuIndex: Int
 ) {
-    /** Creates an OBU packet. */
     init {
         require(streamOffset >= 0) { "streamOffset < 0: $streamOffset" }
         require(obuIndex >= 0) { "obuIndex < 0: $obuIndex" }

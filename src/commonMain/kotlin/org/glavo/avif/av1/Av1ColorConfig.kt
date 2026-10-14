@@ -85,7 +85,6 @@ data class Av1ColorConfig(
         separateUvDeltaQ
     )
 
-    /** Creates an AV1 color configuration. */
     init {
         requireNotNullCompat(bitDepth, "bitDepth")
         requireNotNullCompat(chromaFormat, "chromaFormat")

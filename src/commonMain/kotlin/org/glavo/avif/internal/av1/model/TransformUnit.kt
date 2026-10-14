@@ -26,7 +26,6 @@ data class TransformUnit(val position: BlockPosition, val size: TransformSize) {
         return TransformUnit(nonNullPosition, size)
     }
 
-    /** Creates one transform unit. */
     init {
         requireNotNullCompat(position, "position")
         requireNotNullCompat(size, "size")

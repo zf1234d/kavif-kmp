@@ -30,7 +30,6 @@ data class BoxHeader(
         return payloadOffset + payloadSize
     }
 
-    /** Creates a BMFF box header. */
     init {
         requireNotNullCompat(type, "type")
     }

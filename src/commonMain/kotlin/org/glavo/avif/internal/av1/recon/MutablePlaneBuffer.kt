@@ -51,16 +51,6 @@ internal class MutablePlaneBuffer constructor(
     /** Packed written-state bits for retained sample positions. */
     private val writtenSampleBits: LongArray
 
-    /** Creates a mutable buffer that retains one subregion in containing-plane coordinates.
-     * 
-     * @param width the containing plane width in samples
-     * @param height the containing plane height in samples
-     * @param bitDepth the decoded sample bit depth
-     * @param originX the horizontal storage origin in containing-plane coordinates
-     * @param originY the vertical storage origin in containing-plane coordinates
-     * @param storageWidth the retained storage width in samples
-     * @param storageHeight the retained storage height in samples
-     */
     init {
         require(width > 0) { "width <= 0: $width" }
         require(height > 0) { "height <= 0: $height" }

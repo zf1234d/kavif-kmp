@@ -193,7 +193,6 @@ class ReferenceMotionVectorProjection private constructor(
         val motionVector: MotionVector,
         val referenceOffset: Int
     ) {
-        /** Creates one validated saved temporal motion component. */
         init {
             requireNotNullCompat(motionVector, "motionVector")
             require(referenceOffset != 0) { "referenceOffset == 0" }
@@ -209,7 +208,6 @@ class ReferenceMotionVectorProjection private constructor(
         val motionVector: MotionVector,
         val denominator: Int
     ) {
-        /** Creates one validated projected temporal block. */
         init {
             requireNotNullCompat(motionVector, "motionVector")
             require(!(denominator <= 0 || denominator > 31)) { "denominator out of range: $denominator" }

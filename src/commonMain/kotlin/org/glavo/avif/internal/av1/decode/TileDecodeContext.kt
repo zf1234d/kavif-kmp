@@ -476,7 +476,6 @@ class TileDecodeContext private constructor(
         val motionVector0: InterMotionVector,
         val motionVector1: InterMotionVector?
     ) {
-        /** Creates one temporal motion-field sample. */
         init {
             require(referenceFrame0 >= 0) { "referenceFrame0 < 0: $referenceFrame0" }
             if (compoundReference) {

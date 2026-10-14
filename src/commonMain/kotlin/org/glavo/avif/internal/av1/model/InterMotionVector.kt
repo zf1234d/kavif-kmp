@@ -29,7 +29,6 @@ data class InterMotionVector(val vector: MotionVector, val resolved: Boolean) {
         return if (resolved) this else InterMotionVector(vector, true)
     }
 
-    /** Creates one inter motion-vector state. */
     init {
         requireNotNullCompat(vector, "vector")
     }

@@ -574,7 +574,6 @@ class TileTransformLayoutReader(tileContext: TileDecodeContext) {
         val lumaUnits: Array<TransformUnit>,
         val variableTransformTree: Boolean
     ) {
-        /** Validates one decoded inter-like transform result. */
         init {
             requireNotNullCompat(
                 lumaUnits, "lumaUnits"

@@ -3079,7 +3079,6 @@ class BlockNeighborContext private constructor(
         val primaryNonTranslation: Boolean,
         val secondaryNonTranslation: Boolean
     ) {
-        /** Validates the global-motion vectors. */
         init {
             requireNotNullCompat(primary, "primary")
             requireNotNullCompat(secondary, "secondary")

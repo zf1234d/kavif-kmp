@@ -131,7 +131,7 @@ class Av1Decoder private constructor(
     /** Reads the next decoded presentation output without forcing RGB conversion.
      * 
      * Each successful call consumes exactly one presentation output. The returned object keeps
-     * the planes, color configuration, and frame metadata together; [Av1DecodedOutput#toFrame()]
+     * the planes, color configuration, and frame metadata together; [Av1DecodedOutput.toFrame]
      * may be called later to obtain packed ARGB pixels.
      * 
      * @return the next decoded output, or `null` at end-of-stream

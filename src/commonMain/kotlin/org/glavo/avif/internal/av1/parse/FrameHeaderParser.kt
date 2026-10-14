@@ -2237,7 +2237,6 @@ object FrameHeaderParser {
     ) {
         val referenceIndices: IntArray
 
-        /** Creates parsed skip-mode state with an independent reference-index array. */
         init {
             var referenceIndices = referenceIndices
             referenceIndices = referenceIndices.copyOf()
@@ -2254,7 +2253,6 @@ object FrameHeaderParser {
         val frameSize: FrameSize,
         val superResolution: SuperResolutionInfo
     ) {
-        /** Validates parsed frame size and super-resolution state. */
         init {
             requireNotNullCompat(frameSize, "frameSize")
             requireNotNullCompat(superResolution, "superResolution")
@@ -2270,7 +2268,6 @@ object FrameHeaderParser {
         val segmentation: SegmentationInfo,
         val allLossless: Boolean
     ) {
-        /** Validates derived per-segment lossless state. */
         init {
             requireNotNullCompat(segmentation, "segmentation")
         }

@@ -42,7 +42,6 @@ data class BlockPosition(val x4: Int, val y4: Int) {
         return BlockPosition(x4 + deltaX4, y4 + deltaY4)
     }
 
-    /** Creates a block origin expressed in 4x4 units. */
     init {
         require(x4 >= 0) { "x4 < 0: $x4" }
         require(y4 >= 0) { "y4 < 0: $y4" }

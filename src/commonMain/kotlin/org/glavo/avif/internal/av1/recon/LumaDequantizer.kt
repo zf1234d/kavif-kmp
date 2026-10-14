@@ -317,14 +317,6 @@ internal object LumaDequantizer {
         val useQuantizationMatrices: Boolean = false,
         val quantizationMatrix: Int = 0
     ) {
-        /** Creates one luma dequantization context.
-         * 
-         * @param qIndex the block-local luma AC quantizer index in `[0, 255]`
-         * @param yDcDelta the frame-level luma DC delta quantizer
-         * @param bitDepth the decoded sample bit depth
-         * @param useQuantizationMatrices whether frame-level quantization matrices are enabled
-         * @param quantizationMatrix the luma quantization matrix index in `[0, 15]`
-         */
         init {
             require(qIndex in 0..255) { "qIndex out of range: $qIndex" }
             require(bitDepth > 0) { "bitDepth <= 0: $bitDepth" }

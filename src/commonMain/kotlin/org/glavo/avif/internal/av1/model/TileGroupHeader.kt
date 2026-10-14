@@ -28,7 +28,6 @@ data class TileGroupHeader(
         return endTileIndex - startTileIndex + 1
     }
 
-    /** Creates parsed tile-group header state. */
     init {
         require(totalTileCount > 0) { "totalTileCount <= 0: $totalTileCount" }
         require(!(startTileIndex < 0 || startTileIndex >= totalTileCount)) { "startTileIndex out of range: $startTileIndex" }

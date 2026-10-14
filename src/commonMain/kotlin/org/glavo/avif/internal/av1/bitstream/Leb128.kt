@@ -50,7 +50,6 @@ object Leb128 {
      * @param byteCount the number of bytes consumed from the source
      */
     data class ReadResult(val value: Long, val byteCount: Int) {
-        /** Creates a decoded unsigned LEB128 result. */
         init {
             require(value >= 0) { "value < 0: $value" }
             require(byteCount > 0) { "byteCount <= 0: $byteCount" }
